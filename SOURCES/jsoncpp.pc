@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib64
+includedir=/usr/include/jsoncpp-0.6.0
+
+Name: jsoncpp
+Description: API for manipulating JSON
+Version: 0.6.0
+URL: http://jsoncpp.sourceforge.net/
+Libs: -L${libdir}/jsoncpp-0.6.0/ -L${libdir} -ljsoncpp
+Cflags: -I${includedir}/json/
+
