@@ -3,7 +3,7 @@
 
 Name:           kodi-pvr-addons
 Version:        16.1
-Release:    	1%{?dist}
+Release:    	2%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -16,7 +16,7 @@ Source3:	jsoncpp.pc
 
 BuildRequires:	cmake
 BuildRequires:  kodi-devel >= 16
-BuildRequires:	platform-devel
+BuildRequires:	platform-compat-devel
 BuildRequires:	kodi-platform-devel
 BuildRequires:	jsoncpp-devel 
 BuildRequires:  tinyxml2-devel
@@ -394,6 +394,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Wed May 11 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-2-20160502
+- Rebuilt with platform-compat
 
 * Mon May 02 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-20160502-1
 - Updated to 16.1-20160502
