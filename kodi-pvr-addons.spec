@@ -13,10 +13,22 @@ Source0:        %{name}-%{version}-%{gitdate}.tar.xz
 Source1:	%{name}-snapshot.sh
 Source2:	kodi-pvr-addons.txt
 Source3:	jsoncpp.pc
-Patch1:     pvr.argustv-p8.patch
-Patch2:     pvr.demo-p8.patch
-Patch3:     pvr.dvblink-p8.patch
-Patch4:     pvr.dvbviewer-p8.patch
+Patch1:     	pvr.argustv-p8.patch
+Patch2:     	pvr.demo-p8.patch
+Patch3:     	pvr.dvblink-p8.patch
+Patch4:     	pvr.dvbviewer-p8.patch
+Patch5:     	pvr.filmon-p8.patch
+Patch6:     	pvr.hts-p8.patch
+Patch7:     	pvr.iptvsimple-p8.patch
+Patch8:     	pvr.mediaportal.tvserver-p8.patch
+Patch9:     	pvr.mythtv-p8.patch
+Patch10:     	pvr.nextpvr-p8.patch
+Patch11:     	pvr.njoy-p8.patch
+Patch12:     	pvr.pctv-p8.patch
+Patch13:     	pvr.stalker-p8.patch
+Patch14:     	pvr.vdr.vnsi-p8.patch
+Patch15:     	pvr.vuplus-p8.patch
+Patch16:     	pvr.wmc-p8.patch
 
 
 BuildRequires:	cmake
@@ -289,6 +301,43 @@ pushd pvr.dvblink
 popd
 pushd pvr.dvbviewer
 %patch4 -p1
+popd
+
+pushd pvr.filmon
+%patch5 -p1
+popd
+#pushd pvr.hts
+#%patch6 -p1
+#popd
+pushd pvr.iptvsimple
+%patch7 -p1
+popd
+#pushd pvr.mediaportal
+#%patch8 -p1
+#popd
+pushd pvr.mythtv
+%patch9 -p1
+popd
+pushd pvr.nextpvr
+%patch10 -p1
+popd
+pushd pvr.njoy
+%patch11 -p1
+popd
+pushd pvr.pctv
+%patch12 -p1
+popd
+#pushd pvr.stalker
+#%patch13 -p1
+#popd
+pushd pvr.vdr.vnsi
+%patch14 -p1
+popd
+pushd pvr.vuplus
+%patch15 -p1
+popd
+pushd pvr.wmc
+%patch16 -p1
 popd
 
 

@@ -1,0 +1,176 @@
+From 631f8c46e13641a1e699466117d23113029dd217 Mon Sep 17 00:00:00 2001
+From: "h.udo" <hudokkow@gmail.com>
+Date: Wed, 6 Jan 2016 15:09:17 +0000
+Subject: [PATCH 1/2] [src] Update to p8-platform
+
+---
+ src/Socket.cpp    | 10 +++++-----
+ src/client.cpp    |  2 +-
+ src/client.h      |  2 +-
+ src/pvr2wmc.cpp   |  8 ++++----
+ src/pvr2wmc.h     |  2 +-
+ src/utilities.cpp |  2 +-
+ 6 files changed, 13 insertions(+), 13 deletions(-)
+
+diff --git a/src/Socket.cpp b/src/Socket.cpp
+index 56185e1..94d0c7c 100644
+--- a/src/Socket.cpp
++++ b/src/Socket.cpp
+@@ -20,18 +20,18 @@
+ 
+ #include "kodi/libXBMC_addon.h"
+ #include <string>
+-#include "platform/os.h"
++#include "p8-platform/os.h"
+ #include "client.h"
+ #include "Socket.h"
+ 
+ #include "utilities.h"
+-#include "platform/util/timeutils.h"
+-#include "platform/threads/mutex.h"
++#include "p8-platform/util/timeutils.h"
++#include "p8-platform/threads/mutex.h"
+ 
+ using namespace std;
+ using namespace ADDON;
+ 
+-PLATFORM::CMutex        m_mutex;
++P8PLATFORM::CMutex        m_mutex;
+ 
+ /* Master defines for client control */
+ //#define RECEIVE_TIMEOUT 6 //sec
+@@ -593,7 +593,7 @@ std::vector<CStdString> Socket::GetVector(const CStdString &request, bool allowR
+ 	int maxAttempts = 3;
+ 	int sleepAttemptsMs = 1000;
+ 
+-	PLATFORM::CLockObject lock(m_mutex);						// only process one request at a time
++	P8PLATFORM::CLockObject lock(m_mutex);						// only process one request at a time
+ 
+ 	int code;
+ 	std::vector<CStdString> reponses;
+diff --git a/src/client.cpp b/src/client.cpp
+index 4cf4989..f77205a 100644
+--- a/src/client.cpp
++++ b/src/client.cpp
+@@ -23,7 +23,7 @@
+ #include "kodi/libKODI_guilib.h"
+ #include "pvr2wmc.h"
+ #include "utilities.h"
+-#include "platform/util/util.h"
++#include "p8-platform/util/util.h"
+ 
+ using namespace std;
+ using namespace ADDON;
+diff --git a/src/client.h b/src/client.h
+index 97cefbb..95e25f2 100644
+--- a/src/client.h
++++ b/src/client.h
+@@ -22,7 +22,7 @@
+ #include "kodi/libXBMC_addon.h"
+ #include "kodi/libXBMC_pvr.h"
+ #include "kodi/libKODI_guilib.h"
+-#include "platform/util/StdString.h"
++#include "p8-platform/util/StdString.h"
+ 
+ #include "clientversion.h"
+ 
+diff --git a/src/pvr2wmc.cpp b/src/pvr2wmc.cpp
+index 9a7be97..6fbdf8c 100644
+--- a/src/pvr2wmc.cpp
++++ b/src/pvr2wmc.cpp
+@@ -21,13 +21,13 @@
+ #include "kodi/util/XMLUtils.h"
+ #include "pvr2wmc.h"
+ #include "utilities.h"
+-#include "platform/util/timeutils.h"
++#include "p8-platform/util/timeutils.h"
+ 
+ #include <memory>
+ 
+ using namespace std;
+ using namespace ADDON;
+-using namespace PLATFORM;
++using namespace P8PLATFORM;
+ 
+ #define null NULL
+ 
+@@ -1070,7 +1070,7 @@ PVR_ERROR Pvr2Wmc::GetTimers(ADDON_HANDLE handle)
+ 	}
+ 
+ 	// check time since last time Recordings were updated, update if it has been awhile
+-	if ( _lastRecordingUpdateTime != 0 && PLATFORM::GetTimeMs() > _lastRecordingUpdateTime + 120000)
++	if ( _lastRecordingUpdateTime != 0 && P8PLATFORM::GetTimeMs() > _lastRecordingUpdateTime + 120000)
+ 	{
+ 		PVR->TriggerRecordingUpdate();
+ 	}
+@@ -1145,7 +1145,7 @@ PVR_ERROR Pvr2Wmc::GetRecordings(ADDON_HANDLE handle)
+ 		PVR->TransferRecordingEntry(handle, &xRec);
+ 	}
+ 
+-	_lastRecordingUpdateTime = PLATFORM::GetTimeMs();
++	_lastRecordingUpdateTime = P8PLATFORM::GetTimeMs();
+ 
+ 	return PVR_ERROR_NO_ERROR;
+ }
+diff --git a/src/pvr2wmc.h b/src/pvr2wmc.h
+index 4434325..16c8ccd 100644
+--- a/src/pvr2wmc.h
++++ b/src/pvr2wmc.h
+@@ -20,7 +20,7 @@
+ #pragma once
+ 
+ #include <vector>
+-#include "platform/util/StdString.h"
++#include "p8-platform/util/StdString.h"
+ #include "client.h"
+ #include "Socket.h"
+ 
+diff --git a/src/utilities.cpp b/src/utilities.cpp
+index 113f18a..e69e9fa 100644
+--- a/src/utilities.cpp
++++ b/src/utilities.cpp
+@@ -18,7 +18,7 @@
+  *
+  */
+ 
+-#include "platform/util/StdString.h"
++#include "p8-platform/util/StdString.h"
+ #include "kodi/util/XMLUtils.h"
+ #include "utilities.h"
+ 
+
+From e18bad82636899815a641a40591a7d0f6632f002 Mon Sep 17 00:00:00 2001
+From: "h.udo" <hudokkow@gmail.com>
+Date: Wed, 6 Jan 2016 15:21:59 +0000
+Subject: [PATCH 2/2] [cmake] Update to p8-platform
+
+---
+ CMakeLists.txt | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d960437..bfb9a98 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -6,10 +6,10 @@ enable_language(CXX)
+ 
+ find_package(kodi REQUIRED)
+ find_package(kodiplatform REQUIRED)
+-find_package(platform REQUIRED)
++find_package(p8-platform REQUIRED)
+ 
+ include_directories(${kodiplatform_INCLUDE_DIRS}
+-                    ${platform_INCLUDE_DIRS}
++                    ${p8-platform_INCLUDE_DIRS}
+                     ${KODI_INCLUDE_DIR})
+ 
+ add_definitions(-DUSE_DEMUX)
+@@ -20,7 +20,7 @@ set(WMC_SOURCES src/client.cpp
+                 src/utilities.cpp)
+ 
+ set(DEPLIBS ${kodiplatform_LIBRARIES}
+-            ${platform_LIBRARIES})
++            ${p8-platform_LIBRARIES})
+ 
+ if (WIN32)
+   list(APPEND DEPLIBS ws2_32)

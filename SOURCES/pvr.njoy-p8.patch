@@ -1,0 +1,72 @@
+From 32ebe815e2993aa9a3b3529928de96edddd5c47e Mon Sep 17 00:00:00 2001
+From: "h.udo" <hudokkow@gmail.com>
+Date: Wed, 6 Jan 2016 15:08:59 +0000
+Subject: [PATCH 1/2] [src] Update to p8-platform
+
+---
+ src/client.cpp | 2 +-
+ src/client.h   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/client.cpp b/src/client.cpp
+index d2e3cdd..366fa94 100644
+--- a/src/client.cpp
++++ b/src/client.cpp
+@@ -23,7 +23,7 @@
+ #include "kodi/xbmc_pvr_dll.h"
+ #include "kodi/libKODI_guilib.h"
+ #include "N7Xml.h"
+-#include "platform/util/util.h"
++#include "p8-platform/util/util.h"
+ 
+ using namespace std;
+ using namespace ADDON;
+diff --git a/src/client.h b/src/client.h
+index 900c11a..a5032eb 100644
+--- a/src/client.h
++++ b/src/client.h
+@@ -20,7 +20,7 @@
+  *
+  */
+ 
+-#include "platform/util/StdString.h"
++#include "p8-platform/util/StdString.h"
+ #include "kodi/libXBMC_addon.h"
+ #include "kodi/libXBMC_pvr.h"
+ 
+
+From 8c759ad83830321f24d374882826162b2088dbf6 Mon Sep 17 00:00:00 2001
+From: "h.udo" <hudokkow@gmail.com>
+Date: Wed, 6 Jan 2016 15:21:44 +0000
+Subject: [PATCH 2/2] [cmake] Update to p8-platform
+
+---
+ CMakeLists.txt | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2fc815c..93399dc 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -11,10 +11,10 @@ option(PACKAGE_ZIP "Package Zip file?" OFF)
+ find_package(TinyXML REQUIRED)
+ find_package(kodi REQUIRED)
+ find_package(kodiplatform REQUIRED)
+-find_package(platform REQUIRED)
++find_package(p8-platform REQUIRED)
+ 
+ include_directories(${kodiplatform_INCLUDE_DIRS}
+-                    ${platform_INCLUDE_DIRS}
++                    ${p8-platform_INCLUDE_DIRS}
+                     ${TINYXML_INCLUDE_DIR}
+                     ${KODI_INCLUDE_DIR})
+ 
+@@ -22,7 +22,7 @@ set(NJOY_SOURCES src/client.cpp
+                  src/N7Xml.cpp)
+ 
+ set(DEPLIBS ${kodiplatform_LIBRARIES}
+-            ${platform_LIBRARIES}
++            ${p8-platform_LIBRARIES}
+             ${TINYXML_LIBRARIES})
+ 
+ build_addon(pvr.njoy NJOY DEPLIBS)
