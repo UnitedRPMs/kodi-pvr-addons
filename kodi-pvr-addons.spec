@@ -13,10 +13,15 @@ Source0:        %{name}-%{version}-%{gitdate}.tar.xz
 Source1:	%{name}-snapshot.sh
 Source2:	kodi-pvr-addons.txt
 Source3:	jsoncpp.pc
+Patch1:     pvr.argustv-p8.patch
+Patch2:     pvr.demo-p8.patch
+Patch3:     pvr.dvblink-p8.patch
+Patch4:     pvr.dvbviewer-p8.patch
+
 
 BuildRequires:	cmake
 BuildRequires:  kodi-devel >= 16
-BuildRequires:	platform-compat-devel
+BuildRequires:	platform-devel
 BuildRequires:	kodi-platform-devel
 BuildRequires:	jsoncpp-devel 
 BuildRequires:  tinyxml2-devel
@@ -273,6 +278,19 @@ A PVR Client that connects Kodi to Stalker Middleware.
 
 %prep
 %setup -n kodi-pvr-addons 
+pushd pvr.argustv
+%patch1 -p1
+popd
+pushd pvr.demo
+%patch2 -p1
+popd
+pushd pvr.dvblink
+%patch3 -p1
+popd
+pushd pvr.dvbviewer
+%patch4 -p1
+popd
+
 
 %ifarch i686
 sed -i 's|lib64|lib|g' %{SOURCE3}

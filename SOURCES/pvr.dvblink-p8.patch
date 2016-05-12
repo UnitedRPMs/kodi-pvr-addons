@@ -1,0 +1,283 @@
+From 1031b8fd4bc66d6c49bf84250f10b69ff8c15e01 Mon Sep 17 00:00:00 2001
+From: "h.udo" <hudokkow@gmail.com>
+Date: Wed, 6 Jan 2016 15:08:36 +0000
+Subject: [PATCH] [src] Update to p8-platform
+
+---
+ src/DVBLinkClient.cpp   | 24 ++++++++++++------------
+ src/DVBLinkClient.h     | 14 +++++++-------
+ src/RecordingStreamer.h | 10 +++++-----
+ src/TimeShiftBuffer.h   |  4 ++--
+ src/client.cpp          |  6 +++---
+ 5 files changed, 29 insertions(+), 29 deletions(-)
+
+diff --git a/src/DVBLinkClient.cpp b/src/DVBLinkClient.cpp
+index 8640a8e..a2b28dd 100644
+--- a/src/DVBLinkClient.cpp
++++ b/src/DVBLinkClient.cpp
+@@ -24,7 +24,7 @@
+  */
+ #include <memory>
+ #include "DVBLinkClient.h"
+-#include "platform/util/StdString.h"
++#include "p8-platform/util/StdString.h"
+ #include "kodi/libKODI_guilib.h"
+ 
+ using namespace dvblinkremote;
+@@ -729,7 +729,7 @@ int DVBLinkClient::GetSchedules(ADDON_HANDLE handle)
+ PVR_ERROR DVBLinkClient::GetTimers(ADDON_HANDLE handle)
+ {
+   PVR_ERROR result = PVR_ERROR_FAILED;
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+ 
+   m_timerCount = 0;
+ 
+@@ -863,7 +863,7 @@ static bool is_bit_set(int bit_num, unsigned char bit_field)
+ PVR_ERROR DVBLinkClient::AddTimer(const PVR_TIMER &timer)
+ {
+   PVR_ERROR result = PVR_ERROR_FAILED;
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+   DVBLinkRemoteStatusCode status;
+   AddScheduleRequest * addScheduleRequest = NULL;
+ 
+@@ -991,7 +991,7 @@ PVR_ERROR DVBLinkClient::AddTimer(const PVR_TIMER &timer)
+ PVR_ERROR DVBLinkClient::DeleteTimer(const PVR_TIMER &timer)
+ {
+   PVR_ERROR result = PVR_ERROR_FAILED;
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+   DVBLinkRemoteStatusCode status = DVBLINK_REMOTE_STATUS_ERROR;
+   std::string error;
+ 
+@@ -1044,7 +1044,7 @@ PVR_ERROR DVBLinkClient::DeleteTimer(const PVR_TIMER &timer)
+ PVR_ERROR DVBLinkClient::UpdateTimer(const PVR_TIMER &timer)
+ {
+   PVR_ERROR result = PVR_ERROR_NO_ERROR;
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+ 
+   std::string schedule_id;
+   switch (timer.iTimerType)
+@@ -1141,7 +1141,7 @@ std::string DVBLinkClient::GetRecordedTVByDateObjectID(const std::string& buildI
+ 
+ PVR_ERROR DVBLinkClient::DeleteRecording(const PVR_RECORDING& recording)
+ {
+-//  PLATFORM::CLockObject critsec(m_mutex);
++//  P8PLATFORM::CLockObject critsec(m_mutex);
+   PVR_ERROR result = PVR_ERROR_FAILED;
+   DVBLinkRemoteStatusCode status;
+   RemovePlaybackObjectRequest remoteObj(recording.strRecordingId);
+@@ -1205,7 +1205,7 @@ static std::string get_subtitle(int season, int episode, const std::string& epis
+ 
+ PVR_ERROR DVBLinkClient::GetRecordings(ADDON_HANDLE handle)
+ {
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+   PVR_ERROR result = PVR_ERROR_FAILED;
+   DVBLinkRemoteStatusCode status;
+   m_recording_id_to_url_map.clear();
+@@ -1340,7 +1340,7 @@ bool DVBLinkClient::GetRecordingURL(const char* recording_id, std::string& url)
+ 
+ void DVBLinkClient::GetDriveSpace(long long *iTotal, long long *iUsed)
+ {
+-//  PLATFORM::CLockObject critsec(m_mutex);
++//  P8PLATFORM::CLockObject critsec(m_mutex);
+   GetRecordingSettingsRequest recordingsettingsrequest;
+   *iTotal = 0;
+   *iUsed = 0;
+@@ -1389,7 +1389,7 @@ bool DVBLinkClient::OpenLiveStream(const PVR_CHANNEL &channel, bool use_timeshif
+     return false;
+   }
+ 
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+ 
+   if (m_live_streamer)
+   {
+@@ -1483,7 +1483,7 @@ time_t DVBLinkClient::GetBufferTimeEnd()
+ 
+ void DVBLinkClient::StopStreaming(bool bUseChlHandle)
+ {
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+   StopStreamRequest * request;
+ 
+   if (m_live_streamer != NULL)
+@@ -1566,7 +1566,7 @@ void DVBLinkClient::SetEPGGenre(dvblinkremote::ItemMetadata& metadata, int& genr
+ bool DVBLinkClient::DoEPGSearch(EpgSearchResult& epgSearchResult, const std::string& channelId, const long startTime,
+     const long endTime, const std::string& programId)
+ {
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+   EpgSearchRequest epgSearchRequest(channelId, startTime, endTime);
+   if (programId.compare("") != 0)
+   {
+@@ -1586,7 +1586,7 @@ bool DVBLinkClient::DoEPGSearch(EpgSearchResult& epgSearchResult, const std::str
+ PVR_ERROR DVBLinkClient::GetEPGForChannel(ADDON_HANDLE handle, const PVR_CHANNEL& channel, time_t iStart, time_t iEnd)
+ {
+   PVR_ERROR result = PVR_ERROR_FAILED;
+-  PLATFORM::CLockObject critsec(m_mutex);
++  P8PLATFORM::CLockObject critsec(m_mutex);
+   Channel * c = m_channelMap[channel.iUniqueId];
+   EpgSearchResult epgSearchResult;
+ 
+diff --git a/src/DVBLinkClient.h b/src/DVBLinkClient.h
+index 95e720c..9b3a2c9 100644
+--- a/src/DVBLinkClient.h
++++ b/src/DVBLinkClient.h
+@@ -25,7 +25,7 @@
+ 
+ #pragma once
+ 
+-#include "platform/os.h"
++#include "p8-platform/os.h"
+ #include "libdvblinkremote/dvblinkremote.h"
+ #include "HttpPostClient.h"
+ #include "TimeShiftBuffer.h"
+@@ -34,9 +34,9 @@
+ #include "kodi/libXBMC_pvr.h"
+ #include "kodi/libKODI_guilib.h"
+ #include "client.h"
+-#include "platform/threads/threads.h"
+-#include "platform/threads/mutex.h"
+-#include "platform/util/util.h"
++#include "p8-platform/threads/threads.h"
++#include "p8-platform/threads/mutex.h"
++#include "p8-platform/util/util.h"
+ #include <map>
+ 
+ #define DVBLINK_BUILD_IN_RECORDER_SOURCE_ID   "8F94B459-EFC0-4D91-9B29-EC3D72E92677"
+@@ -96,7 +96,7 @@ struct schedule_desc
+   int schedule_margin_after;
+ };
+ 
+-class DVBLinkClient: public PLATFORM::CThread, public dvblinkremote::DVBLinkRemoteLocker
++class DVBLinkClient: public P8PLATFORM::CThread, public dvblinkremote::DVBLinkRemoteLocker
+ {
+ public:
+   DVBLinkClient(ADDON::CHelper_libXBMC_addon* xbmc, CHelper_libXBMC_pvr* pvr, CHelper_libKODI_guilib* gui,
+@@ -167,7 +167,7 @@ class DVBLinkClient: public PLATFORM::CThread, public dvblinkremote::DVBLinkRemo
+   dvblinkremote::ChannelList* m_channels;
+   long m_timerCount;
+   long m_recordingCount;
+-  PLATFORM::CMutex m_mutex;
++  P8PLATFORM::CMutex m_mutex;
+   CHelper_libXBMC_pvr *PVR;
+   ADDON::CHelper_libXBMC_addon *XBMC;
+   CHelper_libKODI_guilib *GUI;
+@@ -188,7 +188,7 @@ class DVBLinkClient: public PLATFORM::CThread, public dvblinkremote::DVBLinkRemo
+   dvblinkremote::ChannelFavorites channel_favorites_;
+   std::map<std::string, int> inverse_channel_map_;
+   bool no_group_single_rec_;
+-  PLATFORM::CMutex m_comm_mutex;
++  P8PLATFORM::CMutex m_comm_mutex;
+   std::map<std::string, schedule_desc> schedule_map_;
+ };
+ 
+diff --git a/src/RecordingStreamer.h b/src/RecordingStreamer.h
+index 3a4c328..51b2e3e 100644
+--- a/src/RecordingStreamer.h
++++ b/src/RecordingStreamer.h
+@@ -25,11 +25,11 @@
+ 
+ #pragma once
+ 
+-#include "platform/os.h"
++#include "p8-platform/os.h"
+ #include "kodi/libXBMC_addon.h"
+-#include "platform/threads/threads.h"
+-#include "platform/threads/mutex.h"
+-#include "platform/util/util.h"
++#include "p8-platform/threads/threads.h"
++#include "p8-platform/threads/mutex.h"
++#include "p8-platform/util/util.h"
+ #include "libdvblinkremote/dvblinkremote.h"
+ #include "HttpPostClient.h"
+ 
+@@ -63,7 +63,7 @@ class RecordingStreamer: public dvblinkremote::DVBLinkRemoteLocker
+   long port_;
+   time_t prev_check_;
+   time_t check_delta_;
+-  PLATFORM::CMutex m_comm_mutex;
++  P8PLATFORM::CMutex m_comm_mutex;
+ 
+   bool get_recording_info(const std::string& recording_id, long long& recording_size, bool& is_in_recording);
+ 
+diff --git a/src/TimeShiftBuffer.h b/src/TimeShiftBuffer.h
+index 9bb73d2..8802b8b 100644
+--- a/src/TimeShiftBuffer.h
++++ b/src/TimeShiftBuffer.h
+@@ -26,9 +26,9 @@
+ #pragma once
+ 
+ #include "kodi/libXBMC_addon.h"
+-#include "platform/util/StdString.h"
++#include "p8-platform/util/StdString.h"
+ #include "libdvblinkremote/dvblinkremote.h"
+-#include "platform/util/util.h"
++#include "p8-platform/util/util.h"
+ 
+ class LiveStreamerBase
+ {
+diff --git a/src/client.cpp b/src/client.cpp
+index 99a937f..f8221c8 100644
+--- a/src/client.cpp
++++ b/src/client.cpp
+@@ -27,8 +27,8 @@
+ #include "kodi/xbmc_pvr_dll.h"
+ #include "kodi/libKODI_guilib.h"
+ #include "DVBLinkClient.h"
+-#include "platform/util/util.h"
+-#include "platform/util/timeutils.h"
++#include "p8-platform/util/util.h"
++#include "p8-platform/util/timeutils.h"
+ #include "RecordingStreamer.h"
+ 
+ using namespace std;
+@@ -71,7 +71,7 @@ extern "C"
+ 
+ static void generate_uuid(std::string& uuid)
+ {
+-  int64_t seed_value = PLATFORM::GetTimeMs();
++  int64_t seed_value = P8PLATFORM::GetTimeMs();
+   seed_value = seed_value % 1000000000;
+   srand((unsigned int) seed_value);
+ 
+From 28748d72f83e48e8f9470d01c2ec30b79b51de00 Mon Sep 17 00:00:00 2001
+From: "h.udo" <hudokkow@gmail.com>
+Date: Wed, 6 Jan 2016 15:21:19 +0000
+Subject: [PATCH] [cmake] Update to p8-platform
+
+---
+ CMakeLists.txt | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2ac1bb6..621c50b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -8,11 +8,11 @@ enable_language(CXX)
+ 
+ find_package(kodi REQUIRED)
+ find_package(kodiplatform REQUIRED)
+-find_package(platform REQUIRED)
++find_package(p8-platform REQUIRED)
+ find_package(TinyXML2 REQUIRED)
+ 
+ include_directories(${kodiplatform_INCLUDE_DIRS}
+-                    ${platform_INCLUDE_DIRS}
++                    ${p8-platform_INCLUDE_DIRS}
+                     ${KODI_INCLUDE_DIR}
+                     ${TINYXML2_INCLUDE_DIRS}
+                     ${PROJECT_SOURCE_DIR}/lib)
+@@ -27,7 +27,7 @@ set(DVBLINK_SOURCES src/base64.cpp
+                     src/TimeShiftBuffer.cpp)
+ 
+ add_subdirectory(lib/libdvblinkremote)
+-set(DEPLIBS ${platform_LIBRARIES} dvblinkremote ${TINYXML2_LIBRARIES})
++set(DEPLIBS ${p8-platform_LIBRARIES} dvblinkremote ${TINYXML2_LIBRARIES})
+ build_addon(pvr.dvblink DVBLINK DEPLIBS)
+ 
+ include(CPack)

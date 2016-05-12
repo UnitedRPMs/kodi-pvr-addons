@@ -1,0 +1,209 @@
+From 800fb5e560f3a3258f08e0e2bd7c010c61e5a38d Mon Sep 17 00:00:00 2001
+From: "h.udo" <hudokkow@gmail.com>
+Date: Wed, 6 Jan 2016 15:21:21 +0000
+Subject: [PATCH] [cmake] Update to p8-platform
+
+---
+ CMakeLists.txt | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e044caa..ecc74d1 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -9,10 +9,10 @@ enable_language(CXX)
+ find_package(TinyXML REQUIRED)
+ find_package(kodi REQUIRED)
+ find_package(kodiplatform REQUIRED)
+-find_package(platform REQUIRED)
++find_package(p8-platform REQUIRED)
+ 
+ include_directories(${kodiplatform_INCLUDE_DIRS}
+-                    ${platform_INCLUDE_DIRS}
++                    ${p8-platform_INCLUDE_DIRS}
+                     ${KODI_INCLUDE_DIR}
+                     ${TINYXML_INCLUDE_DIRS})
+ 
+@@ -24,7 +24,7 @@ set(DVBVIEWER_SOURCES src/client.cpp
+                       src/TimeshiftBuffer.cpp)
+ 
+ set(DEPLIBS ${kodiplatform_LIBRARIES}
+-            ${platform_LIBRARIES}
++            ${p8-platform_LIBRARIES}
+             ${TINYXML_LIBRARIES})
+ 
+ build_addon(pvr.dvbviewer DVBVIEWER DEPLIBS)
+From 1dd5d43af06f7adc9114bde06d3583e57f3f9d15 Mon Sep 17 00:00:00 2001
+From: "h.udo" <hudokkow@gmail.com>
+Date: Wed, 6 Jan 2016 15:08:39 +0000
+Subject: [PATCH] [src] Update to p8-platform
+
+---
+ src/DvbData.cpp         |  4 ++--
+ src/DvbData.h           | 10 +++++-----
+ src/RecordingReader.cpp |  6 +++---
+ src/RecordingReader.h   |  2 +-
+ src/TimeshiftBuffer.cpp |  2 +-
+ src/TimeshiftBuffer.h   |  8 ++++----
+ src/client.cpp          |  2 +-
+ src/client.h            |  2 +-
+ 8 files changed, 18 insertions(+), 18 deletions(-)
+
+diff --git a/src/DvbData.cpp b/src/DvbData.cpp
+index ea5fd48..6b6cc16 100644
+--- a/src/DvbData.cpp
++++ b/src/DvbData.cpp
+@@ -1,6 +1,6 @@
+ #include "DvbData.h"
+ #include "client.h"
+-#include "platform/util/util.h"
++#include "p8-platform/util/util.h"
+ #include "kodi/util/XMLUtils.h"
+ #include <tinyxml.h>
+ #include <inttypes.h>
+@@ -10,7 +10,7 @@
+ #include <algorithm>
+ 
+ using namespace ADDON;
+-using namespace PLATFORM;
++using namespace P8PLATFORM;
+ 
+ Dvb::Dvb()
+   : m_connected(false), m_backendVersion(0), m_currentChannel(0),
+diff --git a/src/DvbData.h b/src/DvbData.h
+index 6eb7800..3ba3d80 100644
+--- a/src/DvbData.h
++++ b/src/DvbData.h
+@@ -5,8 +5,8 @@
+ 
+ #include "client.h"
+ #include "RecordingReader.h"
+-#include "platform/util/StdString.h"
+-#include "platform/threads/threads.h"
++#include "p8-platform/util/StdString.h"
++#include "p8-platform/threads/threads.h"
+ #include <list>
+ #include <functional>
+ 
+@@ -182,7 +182,7 @@ typedef std::vector<DvbGroup> DvbGroups_t;
+ typedef std::vector<DvbTimer> DvbTimers_t;
+ 
+ class Dvb
+-  : public PLATFORM::CThread
++  : public P8PLATFORM::CThread
+ {
+ public:
+   Dvb(void);
+@@ -272,8 +272,8 @@ class Dvb
+   DvbTimers_t m_timers;
+   unsigned int m_nextTimerId;
+ 
+-  PLATFORM::CMutex m_mutex;
+-  PLATFORM::CCondition<bool> m_started;
++  P8PLATFORM::CMutex m_mutex;
++  P8PLATFORM::CCondition<bool> m_started;
+ };
+ 
+ #endif
+diff --git a/src/RecordingReader.cpp b/src/RecordingReader.cpp
+index 729ab9b..547d56e 100644
+--- a/src/RecordingReader.cpp
++++ b/src/RecordingReader.cpp
+@@ -1,7 +1,7 @@
+ #include "RecordingReader.h"
+ #include "client.h"
+-#include "platform/util/util.h"
+-#include "platform/threads/mutex.h"
++#include "p8-platform/util/util.h"
++#include "p8-platform/threads/mutex.h"
+ 
+ #define REOPEN_INTERVAL      30
+ #define REOPEN_INTERVAL_FAST 10
+@@ -61,7 +61,7 @@ int RecordingReader::ReadData(unsigned char *buffer, unsigned int size)
+         sleep = std::min(sleep, static_cast<int>(m_nextReopen - now + 1));
+       XBMC->Log(LOG_DEBUG, "RecordingReader: End reached. Sleeping %d secs",
+           sleep);
+-      PLATFORM::CEvent::Sleep(sleep * 1000);
++      P8PLATFORM::CEvent::Sleep(sleep * 1000);
+       now += sleep;
+       m_fastReopen = true;
+       goto FORCE_REOPEN;
+diff --git a/src/RecordingReader.h b/src/RecordingReader.h
+index ae6a5a7..72fb559 100644
+--- a/src/RecordingReader.h
++++ b/src/RecordingReader.h
+@@ -3,7 +3,7 @@
+ #ifndef PVR_DVBVIEWER_RECORDINGREADER_H
+ #define PVR_DVBVIEWER_RECORDINGREADER_H
+ 
+-#include "platform/util/StdString.h"
++#include "p8-platform/util/StdString.h"
+ 
+ class RecordingReader
+ {
+diff --git a/src/TimeshiftBuffer.cpp b/src/TimeshiftBuffer.cpp
+index e8b61e5..78fad23 100644
+--- a/src/TimeshiftBuffer.cpp
++++ b/src/TimeshiftBuffer.cpp
+@@ -1,6 +1,6 @@
+ #include "TimeshiftBuffer.h"
+ #include "client.h"
+-#include "platform/util/util.h"
++#include "p8-platform/util/util.h"
+ 
+ #define STREAM_READ_BUFFER_SIZE   32768
+ #define BUFFER_READ_TIMEOUT       10000
+diff --git a/src/TimeshiftBuffer.h b/src/TimeshiftBuffer.h
+index 1d063d8..c59c884 100644
+--- a/src/TimeshiftBuffer.h
++++ b/src/TimeshiftBuffer.h
+@@ -3,11 +3,11 @@
+ #ifndef PVR_DVBVIEWER_TIMESHIFTBUFFER_H
+ #define PVR_DVBVIEWER_TIMESHIFTBUFFER_H
+ 
+-#include "platform/util/StdString.h"
+-#include "platform/threads/threads.h"
++#include "p8-platform/util/StdString.h"
++#include "p8-platform/threads/threads.h"
+ 
+ class TimeshiftBuffer
+-  : public PLATFORM::CThread
++  : public P8PLATFORM::CThread
+ {
+ public:
+   TimeshiftBuffer(CStdString streamURL, CStdString bufferPath);
+@@ -30,7 +30,7 @@ class TimeshiftBuffer
+   void *m_filebufferWriteHandle;
+   time_t m_start;
+ #ifndef TARGET_POSIX
+-  PLATFORM::CMutex m_mutex;
++  P8PLATFORM::CMutex m_mutex;
+   uint64_t m_writePos;
+ #endif
+ };
+diff --git a/src/client.cpp b/src/client.cpp
+index b72609e..2829a6e 100644
+--- a/src/client.cpp
++++ b/src/client.cpp
+@@ -24,7 +24,7 @@
+ #include "RecordingReader.h"
+ #include "kodi/xbmc_pvr_dll.h"
+ #include "kodi/libKODI_guilib.h"
+-#include "platform/util/util.h"
++#include "p8-platform/util/util.h"
+ #include <stdlib.h>
+ 
+ using namespace ADDON;
+diff --git a/src/client.h b/src/client.h
+index bdf0bf4..26611d0 100644
+--- a/src/client.h
++++ b/src/client.h
+@@ -24,7 +24,7 @@
+ 
+ #include "kodi/libXBMC_addon.h"
+ #include "kodi/libXBMC_pvr.h"
+-#include "platform/util/StdString.h"
++#include "p8-platform/util/StdString.h"
+ 
+ #ifndef _UNUSED
+ #if defined(__GNUC__)
