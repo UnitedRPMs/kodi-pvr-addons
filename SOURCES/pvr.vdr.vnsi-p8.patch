@@ -232,3 +232,47 @@ index b731271..ecc0422 100644
  
  #include <stdexcept>
  #include <stdlib.h>
+From 2ebd0d6f49a3411bf59fcb220cc5f1afbe718774 Mon Sep 17 00:00:00 2001
+From: Rainer Hochecker <fernetmenta@online.de>
+Date: Wed, 20 Jan 2016 08:50:25 +0100
+Subject: [PATCH] fix build after rename of p8-platform
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a1bce83..3019396 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -61,7 +61,7 @@ list(APPEND VDR_SOURCES src/client.cpp
+                         src/VNSIRecording.cpp
+                         src/VNSISession.cpp)
+ 
+-list(APPEND DEPLIBS ${platform_LIBRARIES})
++list(APPEND DEPLIBS ${p8-platform_LIBRARIES})
+ if(WIN32)
+   list(APPEND DEPLIBS ws2_32)
+ endif()
+From c1e2b61ca8fd1ff9de8ddbb8daedadaa54812a14 Mon Sep 17 00:00:00 2001
+From: Stefan Saraev <stefan@saraev.ca>
+Date: Tue, 19 Jan 2016 22:55:33 +0200
+Subject: [PATCH] fixup platform rename
+
+---
+ src/VNSISession.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/VNSISession.h b/src/VNSISession.h
+index fd0a9b3..03d5a25 100644
+--- a/src/VNSISession.h
++++ b/src/VNSISession.h
+@@ -29,7 +29,7 @@
+ class cResponsePacket;
+ class cRequestPacket;
+ 
+-namespace PLATFORM
++namespace P8PLATFORM
+ {
+   class CTcpConnection;
+ }

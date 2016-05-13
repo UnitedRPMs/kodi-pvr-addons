@@ -61,7 +61,7 @@ diff --git a/src/HTTPSocket.h b/src/HTTPSocket.h
 index 39e3356..2549c00 100644
 --- a/src/HTTPSocket.h
 +++ b/src/HTTPSocket.h
-@@ -85,7 +85,7 @@ class HTTPSocket
+@@ -85,7 +85,7 @@ protected:
    std::vector<UrlOption>  m_defaultOptions;
  };
  
@@ -70,7 +70,7 @@ index 39e3356..2549c00 100644
  {
    class CTcpConnection;
  }
-@@ -105,5 +105,5 @@ class HTTPSocketRaw : public HTTPSocket
+@@ -105,5 +105,5 @@ protected:
  private:
    std::string               m_host;
    int                       m_port;
@@ -105,9 +105,9 @@ index 7276cad..d4596e5 100644
 +#include "p8-platform/util/timeutils.h"
 +#include "p8-platform/util/util.h"
  
- #include "libstalkerclient/itv.h"
  #include "libstalkerclient/util.h"
-@@ -46,7 +46,7 @@
+ #include "SAPI.h"
+@@ -45,7 +45,7 @@
  #define MSG_RE_AUTHENTICATED            30510
  
  using namespace ADDON;
@@ -120,7 +120,7 @@ diff --git a/src/SData.h b/src/SData.h
 index 30c8fa4..b32cdae 100644
 --- a/src/SData.h
 +++ b/src/SData.h
-@@ -115,7 +115,7 @@ class SData
+@@ -115,7 +115,7 @@ private:
    time_t                      m_iNextEpgLoadTime;
    
    sc_identity_t               m_identity;
@@ -129,7 +129,7 @@ index 30c8fa4..b32cdae 100644
    sc_stb_profile_t            m_profile;
    Json::Value                 m_epgData;
    std::vector<SChannelGroup>  m_channelGroups;
-@@ -123,5 +123,5 @@ class SData
+@@ -123,5 +123,5 @@ private:
    std::string                 m_PlaybackURL;
    CWatchdog                   *m_watchdog;
    XMLTV                       *m_xmltv;
@@ -147,8 +147,8 @@ index 5df9f1f..fd2f1cd 100644
 -#include "platform/os.h"
 +#include "p8-platform/os.h"
  
+ #include "libstalkerclient/itv.h"
  #include "client.h"
- 
 diff --git a/src/XMLTV.cpp b/src/XMLTV.cpp
 index 179b468..94767db 100644
 --- a/src/XMLTV.cpp

@@ -12,7 +12,7 @@ URL:            https://github.com/kodi-pvr
 Source0:        %{name}-%{version}-%{gitdate}.tar.xz
 Source1:	%{name}-snapshot.sh
 Source2:	kodi-pvr-addons.txt
-Source3:	jsoncpp.pc
+#Source3:	jsoncpp.pc
 Patch1:     	pvr.argustv-p8.patch
 Patch2:     	pvr.demo-p8.patch
 Patch3:     	pvr.dvblink-p8.patch
@@ -278,13 +278,13 @@ Requires:       kodi  >= 16.0
 A PVR Client that connects Kodi to Stalker Middleware.
 
 #----------
-#%package -n     kodi-pvr-vbox
+#package -n     kodi-pvr-vbox
 #Summary:        Kodi's PCTV client addon  
 #Group:          Applications/Multimedia
 #Requires:       kodi  >= 16.0
 
-# %description -n kodi-pvr-vbox
-# Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devices.
+#description -n kodi-pvr-vbox
+#Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devices.
 
 
 
@@ -302,19 +302,18 @@ popd
 pushd pvr.dvbviewer
 %patch4 -p1
 popd
-
 pushd pvr.filmon
 %patch5 -p1
 popd
-#pushd pvr.hts
-#%patch6 -p1
-#popd
+pushd pvr.hts
+%patch6 -p1
+popd
 pushd pvr.iptvsimple
 %patch7 -p1
 popd
-#pushd pvr.mediaportal
-#%patch8 -p1
-#popd
+pushd pvr.mediaportal
+%patch8 -p1
+popd
 pushd pvr.mythtv
 %patch9 -p1
 popd
@@ -327,9 +326,9 @@ popd
 pushd pvr.pctv
 %patch12 -p1
 popd
-#pushd pvr.stalker
-#%patch13 -p1
-#popd
+pushd pvr.stalker
+%patch13 -p1
+popd
 pushd pvr.vdr.vnsi
 %patch14 -p1
 popd
@@ -340,10 +339,9 @@ pushd pvr.wmc
 %patch16 -p1
 popd
 
-
-%ifarch i686
-sed -i 's|lib64|lib|g' %{SOURCE3}
-%endif
+#ifarch i686
+#sed -i 's|lib64|lib|g' %{SOURCE3}
+#endif
 
 %build
 ls -d */ | sed 's:/::g' | tee addons.txt
@@ -455,15 +453,15 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 %{_libdir}/kodi/addons/pvr.stalker/
 %{_datadir}/kodi/addons/pvr.stalker/
 
-# %files -n kodi-pvr-vbox
-# %{_libdir}/kodi/addons/pvr.vbox/
-# %{_datadir}/kodi/addons/pvr.vbox/
+#files -n kodi-pvr-vbox
+#{_libdir}/kodi/addons/pvr.vbox/
+#{_datadir}/kodi/addons/pvr.vbox/
 
 
 %changelog
 
 * Wed May 11 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-2-20160502
-- Rebuilt with platform-compat
+- Rebuilt with p8-platform and patches from upstream.
 
 * Mon May 02 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-20160502-1
 - Updated to 16.1-20160502
