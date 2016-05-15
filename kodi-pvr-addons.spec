@@ -3,77 +3,76 @@
 
 Name:           kodi-pvr-addons
 Version:        16.1
-Release:    	2%{?dist}
+Release:        3%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
 Source0:        %{name}-%{version}-%{gitdate}.tar.xz
-Source1:	%{name}-snapshot.sh
-Source2:	kodi-pvr-addons.txt
-#Source3:	jsoncpp.pc
-Patch1:     	pvr.argustv-p8.patch
-Patch2:     	pvr.demo-p8.patch
-Patch3:     	pvr.dvblink-p8.patch
-Patch4:     	pvr.dvbviewer-p8.patch
-Patch5:     	pvr.filmon-p8.patch
-Patch6:     	pvr.hts-p8.patch
-Patch7:     	pvr.iptvsimple-p8.patch
-Patch8:     	pvr.mediaportal.tvserver-p8.patch
-Patch9:     	pvr.mythtv-p8.patch
-Patch10:     	pvr.nextpvr-p8.patch
-Patch11:     	pvr.njoy-p8.patch
-Patch12:     	pvr.pctv-p8.patch
-Patch13:     	pvr.stalker-p8.patch
-Patch14:     	pvr.vdr.vnsi-p8.patch
-Patch15:     	pvr.vuplus-p8.patch
-Patch16:     	pvr.wmc-p8.patch
+Source1:        %{name}-snapshot.sh
+Source2:        kodi-pvr-addons.txt
+Patch1:         pvr.argustv-p8.patch
+Patch2:         pvr.demo-p8.patch
+Patch3:         pvr.dvblink-p8.patch
+Patch4:         pvr.dvbviewer-p8.patch
+Patch5:         pvr.filmon-p8.patch
+Patch6:         pvr.hts-p8.patch
+Patch7:         pvr.iptvsimple-p8.patch
+Patch8:         pvr.mediaportal.tvserver-p8.patch
+Patch9:         pvr.mythtv-p8.patch
+Patch10:        pvr.nextpvr-p8.patch
+Patch11:        pvr.njoy-p8.patch
+Patch12:        pvr.pctv-p8.patch
+Patch13:        pvr.stalker-p8.patch
+Patch14:        pvr.vdr.vnsi-p8.patch
+Patch15:        pvr.vuplus-p8.patch
+Patch16:        pvr.wmc-p8.patch
 
 
-BuildRequires:	cmake
+BuildRequires:  cmake
 BuildRequires:  kodi-devel >= 16
-BuildRequires:	platform-devel
-BuildRequires:	kodi-platform-devel
-BuildRequires:	jsoncpp-devel 
+BuildRequires:  platform-devel
+BuildRequires:  kodi-platform-devel
+BuildRequires:  jsoncpp-devel 
 BuildRequires:  tinyxml2-devel
 BuildRequires:  tinyxml-devel
 BuildRequires:  zlib-devel
-BuildRequires:	git
+#BuildRequires:  git
 BuildRequires:  mesa-libEGL-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  mesa-libGLES-devel
 BuildRequires:  mariadb-devel
 BuildRequires:  libcurl-devel
-BuildRequires:  libtool
+#BuildRequires:  libtool
 BuildRequires:  cppmyth-devel
 BuildRequires:  cryptopp-devel
 BuildRequires:  rapidxml-devel
 #-------------------------------------
 Provides:       xbmc-pvr-addons-common = %{version}-%{release}
-Provides:	kodi-pvr-addons-common = %{version}-%{release}
-Provides:    	xbmc-pvr-addons = %{version}
+Provides:       kodi-pvr-addons-common = %{version}-%{release}
+Provides:       xbmc-pvr-addons = %{version}
 Obsoletes:      xbmc-pvr-addons-common < 14.0
-Obsoletes: 	xbmc-pvr-addons <= %{version}
+Obsoletes:      xbmc-pvr-addons <= %{version}
 #-------------------------------------
-Requires:       kodi  >= 16.0
-Requires:	kodi-pvr-argustv 
-Requires:	kodi-pvr-demo 
-Requires:	kodi-pvr-dvblink 
-Requires:	kodi-pvr-dvbviewer 
-Requires:	kodi-pvr-hts 
-Requires:	kodi-pvr-iptvsimple 
-Requires:	kodi-pvr-mediaportal-tvserver 
-Requires:	kodi-pvr-mythtv 
-Requires:	kodi-pvr-nextpvr 
-Requires:	kodi-pvr-njoy 
-Requires:	kodi-pvr-vdr-vnsi 
-Requires:	kodi-pvr-vuplus 
-Requires:	kodi-pvr-wmc 
-Requires:	kodi-pvr-filmon 
-Requires:	kodi-pvr-pctv 
-Requires:	kodi-pvr-stalker 
-# Requires:	kodi-pvr-vbox
+Requires:       kodi >= 16.0
+Requires:       kodi-pvr-argustv 
+Requires:       kodi-pvr-demo 
+Requires:       kodi-pvr-dvblink 
+Requires:       kodi-pvr-dvbviewer 
+Requires:       kodi-pvr-hts 
+Requires:       kodi-pvr-iptvsimple 
+Requires:       kodi-pvr-mediaportal-tvserver 
+Requires:       kodi-pvr-mythtv 
+Requires:       kodi-pvr-nextpvr 
+Requires:       kodi-pvr-njoy 
+Requires:       kodi-pvr-vdr-vnsi 
+Requires:       kodi-pvr-vuplus 
+Requires:       kodi-pvr-wmc 
+Requires:       kodi-pvr-filmon 
+Requires:       kodi-pvr-pctv 
+Requires:       kodi-pvr-stalker 
+# Requires: kodi-pvr-vbox
 
 
 %description    
@@ -289,7 +288,7 @@ A PVR Client that connects Kodi to Stalker Middleware.
 
 
 %prep
-%setup -n kodi-pvr-addons 
+%setup -qn kodi-pvr-addons 
 pushd pvr.argustv
 %patch1 -p1
 popd
@@ -339,9 +338,8 @@ pushd pvr.wmc
 %patch16 -p1
 popd
 
-#ifarch i686
-#sed -i 's|lib64|lib|g' %{SOURCE3}
-#endif
+#https://github.com/kodi-pvr/pvr.argustv/issues/57
+find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {} ';'
 
 %build
 ls -d */ | sed 's:/::g' | tee addons.txt
@@ -349,9 +347,8 @@ ls -d */ | sed 's:/::g' | tee addons.txt
 file=addons.txt
 while IFS= read -r line; do
         # display $line or do something with $line
-	mkdir -p $line/build/ 
+    mkdir -p $line/build/ 
 pushd %{_builddir}/kodi-pvr-addons/$line/build
-export PKG_CONFIG_PATH=%{_sourcedir}:%{_libdir}/pkgconfig
 cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi ..
 make 
 popd  
@@ -459,9 +456,15 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+* Sun May 15 2016 Sérgio Basto <sergio@serjux.com> - 16.1-3
+- Build with a fix in all FindJsonCpp.cmake to compile against
+  jsoncpp-1.7.2-1.fc24 from Fedore proper
+  https://github.com/kodi-pvr/pvr.argustv/issues/57
+  and remove the previous hack on jsoncpp.
+- clean and retab spec file.
 
-* Wed May 11 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-2-20160502
-- Rebuilt with p8-platform and patches from upstream.
+* Wed May 11 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-2
+- Rebuilt with p8-platform from Fedora proper need backport some patches from upstream.
 
 * Mon May 02 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-20160502-1
 - Updated to 16.1-20160502
