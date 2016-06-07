@@ -1,9 +1,9 @@
-#globals for kodi-pvr-addons-16.1-20160502.tar.xz
-%global gitdate 20160502
+#globals for kodi-pvr-addons-16.1-20160606.tar.xz
+%global gitdate 20160606
 
 Name:           kodi-pvr-addons
 Version:        16.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -28,6 +28,8 @@ Patch13:        pvr.stalker-p8.patch
 Patch14:        pvr.vdr.vnsi-p8.patch
 Patch15:        pvr.vuplus-p8.patch
 Patch16:        pvr.wmc-p8.patch
+Patch17:	pvr.vbox-p8.patch
+Patch18:	pvr.vbox-fixes.patch
 
 
 BuildRequires:  cmake
@@ -277,13 +279,13 @@ Requires:       kodi  >= 16.0
 A PVR Client that connects Kodi to Stalker Middleware.
 
 #----------
-#package -n     kodi-pvr-vbox
-#Summary:        Kodi's PCTV client addon  
-#Group:          Applications/Multimedia
-#Requires:       kodi  >= 16.0
+# package -n     kodi-pvr-vbox
+# Summary:        Kodi's PCTV client addon  
+# Group:          Applications/Multimedia
+# Requires:       kodi  >= 16.0
 
-#description -n kodi-pvr-vbox
-#Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devices.
+# %description -n kodi-pvr-vbox
+# Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devices.
 
 
 
@@ -337,6 +339,10 @@ popd
 pushd pvr.wmc
 %patch16 -p1
 popd
+# pushd pvr.vbox
+# patch17 -p1
+# patch18 -p1
+# popd
 
 #https://github.com/kodi-pvr/pvr.argustv/issues/57
 find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {} ';'
@@ -349,7 +355,7 @@ while IFS= read -r line; do
         # display $line or do something with $line
     mkdir -p $line/build/ 
 pushd %{_builddir}/kodi-pvr-addons/$line/build
-cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi ..
+cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi -DUSE_LTO=1 -DBUILD_SHARED_LIBS=1 ..
 make 
 popd  
 done <"$file"
@@ -450,12 +456,16 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 %{_libdir}/kodi/addons/pvr.stalker/
 %{_datadir}/kodi/addons/pvr.stalker/
 
-#files -n kodi-pvr-vbox
-#{_libdir}/kodi/addons/pvr.vbox/
-#{_datadir}/kodi/addons/pvr.vbox/
+# files -n kodi-pvr-vbox
+# {_libdir}/kodi/addons/pvr.vbox/
+# {_datadir}/kodi/addons/pvr.vbox/
 
 
 %changelog
+
+* Mon Jun 06 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-4
+- Rebuilt thanks to tinyxml2-devel
+
 * Sun May 15 2016 Sérgio Basto <sergio@serjux.com> - 16.1-3
 - Build with a fix in all FindJsonCpp.cmake to compile against
   jsoncpp-1.7.2-1.fc24 from Fedore proper
