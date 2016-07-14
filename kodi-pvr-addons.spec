@@ -3,7 +3,7 @@
 
 Name:           kodi-pvr-addons
 Version:        16.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -462,6 +462,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Fri Jul 08 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 16.1-5
+- Massive rebuild
 
 * Mon Jun 06 2016 David Vasquez <davidjeremias82 at gmail dot com> - 16.1-4
 - Rebuilt thanks to tinyxml2-devel
