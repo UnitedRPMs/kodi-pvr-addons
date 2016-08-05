@@ -24,7 +24,7 @@ name=kodi-pvr-addons
 pushd ${tmp}
 mkdir -p ${name}/
 # FIXME pvr.vbox
-# git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.vbox.git kodi-pvr-addons/pvr.vbox
+git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.vbox.git kodi-pvr-addons/pvr.vbox
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.filmon.git kodi-pvr-addons/pvr.filmon
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.dvblink.git kodi-pvr-addons/pvr.dvblink
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.demo.git kodi-pvr-addons/pvr.demo
