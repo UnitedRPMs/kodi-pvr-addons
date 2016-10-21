@@ -3,7 +3,7 @@
 
 Name:           kodi-pvr-addons
 Version:        17.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -393,6 +393,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Sun Oct 16 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-2
+- Massive rebuild
 
 * Fri Aug 05 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-1
 - Updated for compatibility with Krypton
