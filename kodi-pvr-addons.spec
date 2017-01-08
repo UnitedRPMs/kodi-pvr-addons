@@ -1,17 +1,17 @@
 #globals for kodi-pvr-addons-17.0-20160805.tar.xz
-%global gitdate 20160805
+%global gitdate 20170108
 
 Name:           kodi-pvr-addons
 Version:        17.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
-Source0:        %{name}-%{version}-%{gitdate}.tar.xz
-Source1:        %{name}-snapshot.sh
-Source2:        kodi-pvr-addons.txt
+Source0:        https://transfer.sh/XZdE1/%{name}-%{version}-%{gitdate}.tar.xz
+Source1:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/SOURCES/kodi-pvr-addons-snapshot.sh
+Source2:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/SOURCES/kodi-pvr-addons.txt
 
 BuildRequires:  cmake
 BuildRequires:  kodi-devel >= 17
@@ -393,6 +393,8 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+* Sun Jan 08 2017 Pavlo Rudyi <paulcarroty at riseup.net> - 17.0-3
+- Updated to the latest snapshot
 
 * Sun Oct 16 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-2
 - Massive rebuild
