@@ -9,8 +9,8 @@ Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
 Source0:	https://transfer.sh/Z40Ed/kodi-pvr-addons-17-20170116.tar.xz
-Source1:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/SOURCES/kodi-pvr-addons-snapshot.sh
-Source2:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/SOURCES/kodi-pvr-addons.txt
+Source1:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons-snapshot.sh
+Source2:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons.txt
 
 BuildRequires:  cmake
 BuildRequires:  kodi-devel >= 17
