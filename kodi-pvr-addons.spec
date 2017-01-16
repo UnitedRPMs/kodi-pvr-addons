@@ -2,13 +2,13 @@
 
 Name:           kodi-pvr-addons
 Version:        17.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
-Source0:        https://transfer.sh/lrGPt/%{name}-%{version}-%{gitdate}.tar.xz
+Source0:	https://transfer.sh/Z40Ed/kodi-pvr-addons-17-20170116.tar.xz
 Source1:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/SOURCES/kodi-pvr-addons-snapshot.sh
 Source2:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/SOURCES/kodi-pvr-addons.txt
 
@@ -392,6 +392,10 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Mon Jan 16 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-4
+- Kripton compatibility
+
 * Tue Jan 10 2017 Pavlo Rudyi <paulcarroty at riseup.net> - 17.0-3
 - Updated to the latest snapshot
 

@@ -2,7 +2,7 @@
 
 # New PVR add-ons repository for Kodi: https://github.com/kodi-pvr
 
-tag_name=Jarvis
+tag_name=Krypton
 
 set -x
 
@@ -45,9 +45,15 @@ cd ${package}
 #git checkout ${branch}
 #tag=$(git rev-list HEAD -n 1 | cut -c 1-7)
 #version=`git describe --tags | cut -d '-' -f 1`
-version=16.1
+version=17
 cd ${tmp}
 tar Jcf "$pwd"/${name}-${version}-${date}.tar.xz ${package}
 
+popd
+upload_source=$( curl --upload-file ${name}-${version}-${date}.tar.xz https://transfer.sh/${name}-${version}-${date}.tar.xz )
+if [ -n "$upload_source" ]; then
+GCOM=$( sed -n '/Source0:/=' ${name}.spec)
+sed -i "${GCOM}s#.*#Source0:	${upload_source}#" ${name}.spec
+fi
 
 
