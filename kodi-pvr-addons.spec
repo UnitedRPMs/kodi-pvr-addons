@@ -2,13 +2,13 @@
 
 Name:           kodi-pvr-addons
 Version:        17.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
-Source0:	https://transfer.sh/y3JUZ/kodi-pvr-addons-17-20170315.tar.xz
+Source0:	https://transfer.sh/kJfMD/kodi-pvr-addons-17-20170317.tar.xz
 Source1:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons-snapshot.sh
 Source2:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons.txt
 
@@ -54,7 +54,11 @@ Requires:       kodi-pvr-vuplus
 Requires:       kodi-pvr-wmc 
 Requires:       kodi-pvr-filmon 
 Requires:       kodi-pvr-pctv 
+# FIX ME
+%if 0%{?fedora} <= 25
 Requires:       kodi-pvr-stalker 
+%endif
+#
 Requires: 	kodi-pvr-vbox
 
 
@@ -161,7 +165,7 @@ Provides:       xbmc-pvr-mythtv-cmyth = %{version}-%{release}
 Obsoletes:      xbmc-pvr-mythtv-cmyth < 14.0
 
 %description -n kodi-pvr-mythtv
-MythTV frontend (up to MythTV 0.27). Supports streaming of Live TV & recordings,
+MythTV frontend (up to MythTV 0.26). Supports streaming of Live TV & recordings,
 listening to radio channels, EPG and timers.
 
 #----------
@@ -250,7 +254,8 @@ Requires:       kodi  >= 17.0
 Kodi's PCTV client addon.
 
 #----------
-
+#FIX ME
+%if 0%{?fedora} <= 25
 %package -n     kodi-pvr-stalker
 Summary:        Stalker Middleware PVR client addon for Kodi  
 Group:          Applications/Multimedia
@@ -258,7 +263,7 @@ Requires:       kodi  >= 17.0
 
 %description -n kodi-pvr-stalker
 A PVR Client that connects Kodi to Stalker Middleware.
-
+%endif
 #----------
 %package -n     kodi-pvr-vbox
 Summary:        Kodi's PCTV client addon  
@@ -273,11 +278,16 @@ Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devic
 %prep
 %setup -qn kodi-pvr-addons 
 
-
 #https://github.com/kodi-pvr/pvr.argustv/issues/57
 find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {} ';'
 
 %build
+
+#FIX ME
+%if 0%{?fedora} >= 26
+rm -rf pvr.stalker/
+%endif
+
 ls -d */ | sed 's:/::g' | tee addons.txt
 
 file=addons.txt
@@ -382,9 +392,12 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 %{_libdir}/kodi/addons/pvr.pctv/
 %{_datadir}/kodi/addons/pvr.pctv/
 
+#FIX ME
+%if 0%{?fedora} <= 25
 %files -n kodi-pvr-stalker
 %{_libdir}/kodi/addons/pvr.stalker/
 %{_datadir}/kodi/addons/pvr.stalker/
+%endif
 
 %files -n kodi-pvr-vbox
 %{_libdir}/kodi/addons/pvr.vbox/
@@ -392,6 +405,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Fri Mar 17 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-5
+- Massive rebuild
 
 * Mon Jan 16 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-4
 - Kripton compatibility
