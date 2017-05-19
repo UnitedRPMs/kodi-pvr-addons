@@ -2,13 +2,13 @@
 
 Name:           kodi-pvr-addons
 Version:        17.0
-Release:        5%{?dist}
+Release:        7%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
-Source0:	https://transfer.sh/kJfMD/kodi-pvr-addons-17-20170317.tar.xz
+Source0:	https://github.com/UnitedRPMs/kodi-pvr-addons/releases/download/Krypton/kodi-pvr-addons-17-20170519.tar.xz
 Source1:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons-snapshot.sh
 Source2:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons.txt
 
@@ -55,9 +55,9 @@ Requires:       kodi-pvr-wmc
 Requires:       kodi-pvr-filmon 
 Requires:       kodi-pvr-pctv 
 # FIX ME
-%if 0%{?fedora} <= 25
+#%if 0%{?fedora} <= 25
 Requires:       kodi-pvr-stalker 
-%endif
+#%endif
 #
 Requires: 	kodi-pvr-vbox
 
@@ -255,7 +255,7 @@ Kodi's PCTV client addon.
 
 #----------
 #FIX ME
-%if 0%{?fedora} <= 25
+#%if 0%{?fedora} <= 25
 %package -n     kodi-pvr-stalker
 Summary:        Stalker Middleware PVR client addon for Kodi  
 Group:          Applications/Multimedia
@@ -263,7 +263,7 @@ Requires:       kodi  >= 17.0
 
 %description -n kodi-pvr-stalker
 A PVR Client that connects Kodi to Stalker Middleware.
-%endif
+#%endif
 #----------
 %package -n     kodi-pvr-vbox
 Summary:        Kodi's PCTV client addon  
@@ -284,9 +284,9 @@ find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {
 %build
 
 #FIX ME
-%if 0%{?fedora} >= 26
-rm -rf pvr.stalker/
-%endif
+#%if 0%{?fedora} >= 26
+#rm -rf pvr.stalker/
+#%endif
 
 ls -d */ | sed 's:/::g' | tee addons.txt
 
@@ -393,11 +393,11 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 %{_datadir}/kodi/addons/pvr.pctv/
 
 #FIX ME
-%if 0%{?fedora} <= 25
+#%if 0%{?fedora} <= 25
 %files -n kodi-pvr-stalker
 %{_libdir}/kodi/addons/pvr.stalker/
 %{_datadir}/kodi/addons/pvr.stalker/
-%endif
+#%endif
 
 %files -n kodi-pvr-vbox
 %{_libdir}/kodi/addons/pvr.vbox/
@@ -405,6 +405,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Fri May 19 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-7
+- Rebuilt
 
 * Fri Mar 17 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-5
 - Massive rebuild

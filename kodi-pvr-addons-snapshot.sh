@@ -50,10 +50,10 @@ cd ${tmp}
 tar Jcf "$pwd"/${name}-${version}-${date}.tar.xz ${package}
 
 popd
-upload_source=$( curl --upload-file ${name}-${version}-${date}.tar.xz https://transfer.sh/${name}-${version}-${date}.tar.xz )
-if [ -n "$upload_source" ]; then
-GCOM=$( sed -n '/Source0:/=' ${name}.spec)
-sed -i "${GCOM}s#.*#Source0:	${upload_source}#" ${name}.spec
-fi
+#upload_source=$( curl --upload-file ${name}-${version}-${date}.tar.xz https://transfer.sh/${name}-${version}-${date}.tar.xz )
+#if [ -n "$upload_source" ]; then
+#GCOM=$( sed -n '/Source0:/=' ${name}.spec)
+#sed -i "${GCOM}s#.*#Source0:	${upload_source}#" ${name}.spec
+#fi
 
 
