@@ -55,9 +55,9 @@ Requires:       kodi-pvr-wmc
 Requires:       kodi-pvr-filmon 
 Requires:       kodi-pvr-pctv 
 # FIX ME
-#%if 0%{?fedora} <= 25
-Requires:       kodi-pvr-stalker 
-#%endif
+%if 0%{?fedora} <= 25
+Recommends:       kodi-pvr-stalker 
+%endif
 #
 Requires: 	kodi-pvr-vbox
 
@@ -255,7 +255,7 @@ Kodi's PCTV client addon.
 
 #----------
 #FIX ME
-#%if 0%{?fedora} <= 25
+%if 0%{?fedora} <= 25
 %package -n     kodi-pvr-stalker
 Summary:        Stalker Middleware PVR client addon for Kodi  
 Group:          Applications/Multimedia
@@ -263,7 +263,7 @@ Requires:       kodi  >= 17.0
 
 %description -n kodi-pvr-stalker
 A PVR Client that connects Kodi to Stalker Middleware.
-#%endif
+%endif
 #----------
 %package -n     kodi-pvr-vbox
 Summary:        Kodi's PCTV client addon  
@@ -393,11 +393,11 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 %{_datadir}/kodi/addons/pvr.pctv/
 
 #FIX ME
-#%if 0%{?fedora} <= 25
+%if 0%{?fedora} <= 25
 %files -n kodi-pvr-stalker
 %{_libdir}/kodi/addons/pvr.stalker/
 %{_datadir}/kodi/addons/pvr.stalker/
-#%endif
+%endif
 
 %files -n kodi-pvr-vbox
 %{_libdir}/kodi/addons/pvr.vbox/
