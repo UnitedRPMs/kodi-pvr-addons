@@ -284,9 +284,9 @@ find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {
 %build
 
 #FIX ME
-#%if 0%{?fedora} >= 26
-#rm -rf pvr.stalker/
-#%endif
+%if 0%{?fedora} >= 26
+rm -rf pvr.stalker/
+%endif
 
 ls -d */ | sed 's:/::g' | tee addons.txt
 
