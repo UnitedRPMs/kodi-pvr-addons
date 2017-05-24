@@ -1,8 +1,8 @@
-%global gitdate 20170110
+%global gitdate 20170524
 
 Name:           kodi-pvr-addons
-Version:        17.0
-Release:        7%{?dist}
+Version:        17.2
+Release:        1%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -405,6 +405,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Wed May 24 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.2-1
+- Updated to 17.2-1
 
 * Fri May 19 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-7
 - Rebuilt
