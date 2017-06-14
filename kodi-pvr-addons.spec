@@ -2,7 +2,7 @@
 
 Name:           kodi-pvr-addons
 Version:        17.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -295,7 +295,7 @@ while IFS= read -r line; do
         # display $line or do something with $line
     mkdir -p $line/build/ 
 pushd %{_builddir}/kodi-pvr-addons/$line/build
-cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi -DUSE_LTO=1 -DBUILD_SHARED_LIBS=1 ..
+cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi -DBUILD_SHARED_LIBS=1 ..
 make 
 popd  
 done <"$file"
@@ -405,6 +405,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Wed Jun 14 2017 Martin Janser <martin AT duss-janser DOT ch> - 17.2-2
+- Removed USE_LTO flag to fix build
 
 * Wed May 24 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.2-1
 - Updated to 17.2-1
