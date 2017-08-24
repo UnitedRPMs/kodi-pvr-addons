@@ -1,4 +1,5 @@
 %global gitdate 20170524
+%global debug_package %{nil}
 
 Name:           kodi-pvr-addons
 Version:        17.2
@@ -11,6 +12,7 @@ URL:            https://github.com/kodi-pvr
 Source0:	https://github.com/UnitedRPMs/kodi-pvr-addons/releases/download/17.2/kodi-pvr-addons-17-20170524.tar.xz
 Source1:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons-snapshot.sh
 Source2:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons.txt
+Patch:		xlocale_FIX.path
 
 BuildRequires:  cmake
 BuildRequires:  kodi-devel >= 17
@@ -277,6 +279,9 @@ Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devic
 
 %prep
 %setup -qn kodi-pvr-addons 
+%if 0%{?fedora} >= 27
+%patch -p1
+%endif
 
 #https://github.com/kodi-pvr/pvr.argustv/issues/57
 find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {} ';'
