@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 
 Name:           kodi-pvr-addons
-Version:        17.2
+Version:        17.4
 Release:        2%{?dist}
 Summary:        Kodi PVR add-ons
 
@@ -10,8 +10,8 @@ Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
 Source0:	https://github.com/UnitedRPMs/kodi-pvr-addons/releases/download/17.2/kodi-pvr-addons-17-20170524.tar.xz
-Source1:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons-snapshot.sh
-Source2:        https://raw.githubusercontent.com/UnitedRPMs/kodi-pvr-addons/master/kodi-pvr-addons.txt
+Source1:        kodi-pvr-addons-snapshot.sh
+Source2:        kodi-pvr-addons.txt
 Patch:		xlocale_FIX.path
 
 BuildRequires:  cmake
@@ -410,6 +410,10 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Fri Sep 01 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.4-2
+- Rebuilt for Kodi cmake
+- Xlocale patch
 
 * Wed Jun 14 2017 Martin Janser <martin AT duss-janser DOT ch> - 17.2-2
 - Removed USE_LTO flag to fix build
