@@ -3,7 +3,7 @@
 
 Name:           kodi-pvr-addons
 Version:        17.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -56,10 +56,7 @@ Requires:       kodi-pvr-vuplus
 Requires:       kodi-pvr-wmc 
 Requires:       kodi-pvr-filmon 
 Requires:       kodi-pvr-pctv 
-# FIX ME
-%if 0%{?fedora} <= 25
-Recommends:       kodi-pvr-stalker 
-%endif
+Recommends:     kodi-pvr-stalker 
 #
 Requires: 	kodi-pvr-vbox
 
@@ -256,8 +253,6 @@ Requires:       kodi  >= 17.0
 Kodi's PCTV client addon.
 
 #----------
-#FIX ME
-%if 0%{?fedora} <= 25
 %package -n     kodi-pvr-stalker
 Summary:        Stalker Middleware PVR client addon for Kodi  
 Group:          Applications/Multimedia
@@ -265,7 +260,7 @@ Requires:       kodi  >= 17.0
 
 %description -n kodi-pvr-stalker
 A PVR Client that connects Kodi to Stalker Middleware.
-%endif
+
 #----------
 %package -n     kodi-pvr-vbox
 Summary:        Kodi's PCTV client addon  
@@ -286,12 +281,10 @@ Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devic
 #https://github.com/kodi-pvr/pvr.argustv/issues/57
 find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {} ';'
 
-%build
+# pvr.stalker FIX
+find -name "CMakeLists.txt" -exec sed -i 's/JsonCpp REQUIRED/jsoncpp REQUIRED/g' {} ';'
 
-#FIX ME
-%if 0%{?fedora} >= 26
-rm -rf pvr.stalker/
-%endif
+%build
 
 ls -d */ | sed 's:/::g' | tee addons.txt
 
@@ -397,12 +390,10 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 %{_libdir}/kodi/addons/pvr.pctv/
 %{_datadir}/kodi/addons/pvr.pctv/
 
-#FIX ME
-%if 0%{?fedora} <= 25
 %files -n kodi-pvr-stalker
 %{_libdir}/kodi/addons/pvr.stalker/
 %{_datadir}/kodi/addons/pvr.stalker/
-%endif
+
 
 %files -n kodi-pvr-vbox
 %{_libdir}/kodi/addons/pvr.vbox/
@@ -410,6 +401,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Sun Oct 08 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.4-3
+- kodi-pvr-stalker enabled for all releases
 
 * Fri Sep 01 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.4-2
 - Rebuilt for Kodi cmake
