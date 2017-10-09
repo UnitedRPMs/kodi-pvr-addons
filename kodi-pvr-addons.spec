@@ -9,7 +9,7 @@ Summary:        Kodi PVR add-ons
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
-Source0:	https://github.com/UnitedRPMs/kodi-pvr-addons/releases/download/17.2/kodi-pvr-addons-17-20170524.tar.xz
+Source0:	https://github.com/UnitedRPMs/kodi-pvr-addons/releases/download/17.4/kodi-pvr-addons-17-20171008.tar.xz
 Source1:        kodi-pvr-addons-snapshot.sh
 Source2:        kodi-pvr-addons.txt
 Patch:		xlocale_FIX.path
