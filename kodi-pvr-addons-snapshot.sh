@@ -33,7 +33,7 @@ git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.dvbviewer.git kodi-pvr-
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.mediaportal.tvserver.git kodi-pvr-addons/pvr.mediaportal
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.iptvsimple.git kodi-pvr-addons/pvr.iptvsimple
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.vuplus.git kodi-pvr-addons/pvr.vuplus
-git clone -b 2.8.6-Krypton https://github.com/kodi-pvr/pvr.stalker.git kodi-pvr-addons/pvr.stalker
+git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.stalker.git kodi-pvr-addons/pvr.stalker
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.pctv.git kodi-pvr-addons/pvr.pctv
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.njoy.git kodi-pvr-addons/pvr.njoy
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.nextpvr.git kodi-pvr-addons/pvr.nextpvr
