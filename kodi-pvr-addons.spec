@@ -33,6 +33,7 @@ BuildRequires:  cppmyth-devel
 BuildRequires:  cryptopp-devel
 BuildRequires:  rapidxml-devel
 BuildRequires:	libxml2-devel
+BuildRequires:	clang
 #-------------------------------------
 Provides:       xbmc-pvr-addons-common = %{version}-%{release}
 Provides:       kodi-pvr-addons-common = %{version}-%{release}
@@ -293,6 +294,7 @@ while IFS= read -r line; do
         # display $line or do something with $line
     mkdir -p $line/build/ 
 pushd %{_builddir}/kodi-pvr-addons/$line/build
+export CC=clang CXX=clang++
 cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi -DBUILD_SHARED_LIBS=1 ..
 make 
 popd  
@@ -305,6 +307,7 @@ while IFS= read -r line; do
         # display $line or do something with $line
 pushd %{_builddir}/kodi-pvr-addons/$line/build
 export PKG_CONFIG_PATH=%{_sourcedir}:%{_libdir}/pkgconfig
+export CC=clang CXX=clang++
 make install DESTDIR=%{buildroot}
 popd  
 done <"$file"
