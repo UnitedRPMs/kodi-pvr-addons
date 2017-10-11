@@ -3,7 +3,7 @@
 
 Name:           kodi-pvr-addons
 Version:        17.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -410,6 +410,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Wed Oct 11 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 17.4-3
+- Rebuilt for jsoncpp
 
 * Fri Sep 01 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.4-2
 - Rebuilt for Kodi cmake
