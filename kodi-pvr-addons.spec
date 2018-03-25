@@ -399,7 +399,7 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 %changelog
 
-* Wed Mar 21 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 18.0-1
+* Wed Mar 21 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 18.0-1
 - Updated to 18.0
 
 * Sun Oct 22 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 17.5-1
