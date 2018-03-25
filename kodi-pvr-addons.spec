@@ -1,23 +1,22 @@
-%global gitdate 20170524
+%global gitdate 20180324
 %global debug_package %{nil}
 
 Name:           kodi-pvr-addons
-Version:        17.5
+Version:        18.0
 Release:        1%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
-Source0:	https://github.com/UnitedRPMs/kodi-pvr-addons/releases/download/17.2/kodi-pvr-addons-17-20170524.tar.xz
+Source0:	https://github.com/UnitedRPMs/kodi-pvr-addons/releases/download/18.0/%{name}-18-20180324.tar.xz
 Source1:        kodi-pvr-addons-snapshot.sh
 Source2:        kodi-pvr-addons.txt
-Patch:		xlocale_FIX.path
 
 BuildRequires:  cmake
-BuildRequires:  kodi-devel >= 17
-BuildRequires:  platform-devel
-BuildRequires:  kodi-platform-devel
+BuildRequires:  kodi-devel >= 18
+BuildRequires:  platform-devel 
+BuildRequires:  kodi-platform-devel >= 18
 BuildRequires:  jsoncpp-devel 
 BuildRequires:  tinyxml2-devel
 BuildRequires:  tinyxml-devel
@@ -57,9 +56,9 @@ Requires:       kodi-pvr-wmc
 Requires:       kodi-pvr-filmon 
 Requires:       kodi-pvr-pctv 
 # FIX ME
-%if 0%{?fedora} <= 25
+#if 0%{?fedora} <= 25
 Recommends:       kodi-pvr-stalker 
-%endif
+#endif
 #
 Requires: 	kodi-pvr-vbox
 
@@ -257,7 +256,7 @@ Kodi's PCTV client addon.
 
 #----------
 #FIX ME
-%if 0%{?fedora} <= 25
+#if 0%{?fedora} <= 25
 %package -n     kodi-pvr-stalker
 Summary:        Stalker Middleware PVR client addon for Kodi  
 Group:          Applications/Multimedia
@@ -265,7 +264,7 @@ Requires:       kodi  >= 17.0
 
 %description -n kodi-pvr-stalker
 A PVR Client that connects Kodi to Stalker Middleware.
-%endif
+#endif
 #----------
 %package -n     kodi-pvr-vbox
 Summary:        Kodi's PCTV client addon  
@@ -279,19 +278,11 @@ Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devic
 
 %prep
 %setup -qn kodi-pvr-addons 
-%if 0%{?fedora} >= 27
-%patch -p1
-%endif
 
 #https://github.com/kodi-pvr/pvr.argustv/issues/57
 find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {} ';'
 
 %build
-
-#FIX ME
-%if 0%{?fedora} >= 26
-rm -rf pvr.stalker/
-%endif
 
 ls -d */ | sed 's:/::g' | tee addons.txt
 
@@ -397,12 +388,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 %{_libdir}/kodi/addons/pvr.pctv/
 %{_datadir}/kodi/addons/pvr.pctv/
 
-#FIX ME
-%if 0%{?fedora} <= 25
 %files -n kodi-pvr-stalker
 %{_libdir}/kodi/addons/pvr.stalker/
 %{_datadir}/kodi/addons/pvr.stalker/
-%endif
 
 %files -n kodi-pvr-vbox
 %{_libdir}/kodi/addons/pvr.vbox/
@@ -410,6 +398,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Wed Mar 21 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 18.0-1
+- Updated to 18.0
 
 * Sun Oct 22 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 17.5-1
 - Updated to 17.5
