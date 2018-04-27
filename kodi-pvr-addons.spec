@@ -1,9 +1,9 @@
-%global gitdate 20180324
+%global gitdate 20180426
 %global debug_package %{nil}
 
 Name:           kodi-pvr-addons
 Version:        18.0
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -398,6 +398,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Thu Apr 26 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 18.0-4
+- Updated to current commit
 
 * Wed Mar 21 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 18.0-2
 - Rebuilt for tinyxml2
