@@ -1,9 +1,9 @@
-%global gitdate 20180426
+%global gitdate 20180627
 %global debug_package %{nil}
 
 Name:           kodi-pvr-addons
 Version:        18.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -55,11 +55,7 @@ Requires:       kodi-pvr-vuplus
 Requires:       kodi-pvr-wmc 
 Requires:       kodi-pvr-filmon 
 Requires:       kodi-pvr-pctv 
-# FIX ME
-#if 0%{?fedora} <= 25
-Recommends:       kodi-pvr-stalker 
-#endif
-#
+Recommends:	kodi-pvr-stalker 
 Requires: 	kodi-pvr-vbox
 
 
@@ -255,8 +251,6 @@ Requires:       kodi  >= 17.0
 Kodi's PCTV client addon.
 
 #----------
-#FIX ME
-#if 0%{?fedora} <= 25
 %package -n     kodi-pvr-stalker
 Summary:        Stalker Middleware PVR client addon for Kodi  
 Group:          Applications/Multimedia
@@ -264,7 +258,7 @@ Requires:       kodi  >= 17.0
 
 %description -n kodi-pvr-stalker
 A PVR Client that connects Kodi to Stalker Middleware.
-#endif
+
 #----------
 %package -n     kodi-pvr-vbox
 Summary:        Kodi's PCTV client addon  
@@ -398,6 +392,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Wed Jun 27 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 18.0-5
+- Updated to current commit
 
 * Thu Apr 26 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 18.0-4
 - Updated to current commit
