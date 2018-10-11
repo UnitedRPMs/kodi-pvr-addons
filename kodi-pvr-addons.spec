@@ -3,7 +3,7 @@
 
 Name:           kodi-pvr-addons
 Version:        18.0
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Kodi PVR add-ons
 
 Group:          Applications/Multimedia
@@ -392,6 +392,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Wed Sep 05 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 18.0-6  
+- Automatic Mass Rebuild
 
 * Wed Jun 27 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 18.0-5
 - Updated to current commit
