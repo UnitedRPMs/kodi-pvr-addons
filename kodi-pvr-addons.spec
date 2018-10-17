@@ -13,6 +13,7 @@ Source0:	https://github.com/UnitedRPMs/%{name}/releases/download/18.0/%{name}-18
 Source1:        kodi-pvr-addons-snapshot.sh
 Source2:        kodi-pvr-addons.txt
 
+BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  kodi-devel >= 18
 BuildRequires:  platform-devel 
