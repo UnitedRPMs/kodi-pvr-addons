@@ -1,17 +1,18 @@
-%global gitdate 20180627
+%global gitdate 20181230
 %global debug_package %{nil}
 
 Name:           kodi-pvr-addons
 Version:        18.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Kodi PVR add-ons
-
+Epoch:		1
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
 Source0:	https://github.com/UnitedRPMs/%{name}/releases/download/18.0/%{name}-18-%{gitdate}.tar.xz
 Source1:        kodi-pvr-addons-snapshot.sh
 Source2:        kodi-pvr-addons.txt
+Patch:		rapidxml_fix.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
@@ -22,7 +23,7 @@ BuildRequires:  jsoncpp-devel
 BuildRequires:  tinyxml2-devel
 BuildRequires:  tinyxml-devel
 BuildRequires:  zlib-devel
-#BuildRequires:  git
+BuildRequires:  git
 BuildRequires:  mesa-libEGL-devel
 BuildRequires:  mesa-libGL-devel
 BuildRequires:  mesa-libGLES-devel
@@ -31,7 +32,7 @@ BuildRequires:  libcurl-devel
 #BuildRequires:  libtool
 BuildRequires:  cppmyth-devel
 BuildRequires:  cryptopp-devel
-BuildRequires:  rapidxml-devel
+BuildRequires:  rapidxml-devel 
 BuildRequires:	libxml2-devel
 #-------------------------------------
 Provides:       xbmc-pvr-addons-common = %{version}-%{release}
@@ -66,6 +67,7 @@ This package install all Kodi PVR addons.
 #----------
 
 %package -n     kodi-pvr-argustv
+Version:	3.5.4
 Summary:        Kodi frontend for the ARGUS TV PVR
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -79,6 +81,7 @@ listening to radio channels, EPG and schedules.
 #----------
 
 %package -n     kodi-pvr-demo
+Version:	3.6.1
 Summary:        Demo PVR Client for Kodi
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -91,6 +94,7 @@ Obsoletes:      xbmc-pvr-demo < 14.0
 #----------
 
 %package -n     kodi-pvr-dvblink
+Version:	4.7.0
 Summary:        Kodi PVR Plugin for DVBLink
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -104,6 +108,7 @@ TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-dvbviewer
+Version:	3.7.8
 Summary:        Kodi's frontend for DVBViewer
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -117,6 +122,7 @@ recordings & EPG.
 #----------
 
 %package -n     kodi-pvr-hts
+Version:	4.4.6
 Summary:        Kodi's frontend for Tvheadend
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -129,6 +135,7 @@ Tvheadend frontend; supporting streaming of Live TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-iptvsimple
+Version:	3.5.3
 Summary:        Kodi PVR addon for IPTV support
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -142,6 +149,7 @@ multicast/unicast sources, listening to radio channels and EPG.
 #----------
 
 %package -n     kodi-pvr-mediaportal-tvserver
+Version:	3.5.14
 Summary:        Kodi frontend for the MediaPortal TV Server (ffmpeg + tsreader version)
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -156,6 +164,7 @@ former ffmpeg and tsreader addons.
 #----------
 
 %package -n     kodi-pvr-mythtv
+Version:	4.18.1
 Summary:        Kodi frontend for MythTV (using libcmyth)
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -169,6 +178,7 @@ listening to radio channels, EPG and timers.
 #----------
 
 %package -n     kodi-pvr-nextpvr
+Version:	3.3.8
 Summary:        Kodi frontend for the NextPVR
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -182,6 +192,7 @@ to radio channels and EPG.
 #----------
 
 %package -n     kodi-pvr-njoy
+Version:	3.4.2
 Summary:        Njoy N7 PVR Client for Kodi
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -194,6 +205,7 @@ Njoy N7 PVR Client for Kodi.
 #----------
 
 %package -n     kodi-pvr-vdr-vnsi
+Version:	3.6.2
 Summary:        PVR client to connect VDR to Kodi over the VNSI interface
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -210,6 +222,7 @@ to be installed on the VDR backend.
 #----------
 
 %package -n     kodi-pvr-vuplus
+Version:	3.15.4
 Summary:        Kodi's frontend for VU+ / Enigma2 based settop boxes
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -222,6 +235,7 @@ VU+ frontend; supporting streaming of Live TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-wmc
+Version:	2.4.3
 Summary:        Windows Media Center client for Kodi
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -234,6 +248,7 @@ An Kodi client to interface to Windows Media Center's record and EPG service.
 #----------
 
 %package -n     kodi-pvr-filmon
+Version:	2.4.4
 Summary:        Kodi's Filmon client addon 
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -244,6 +259,7 @@ Kodi's Filmon client addon.
 #----------
 
 %package -n     kodi-pvr-pctv
+Version:	2.4.5
 Summary:        Kodi's PCTV client addon  
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -253,6 +269,7 @@ Kodi's PCTV client addon.
 
 #----------
 %package -n     kodi-pvr-stalker
+Version:	2.8.6
 Summary:        Stalker Middleware PVR client addon for Kodi  
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -262,6 +279,7 @@ A PVR Client that connects Kodi to Stalker Middleware.
 
 #----------
 %package -n     kodi-pvr-vbox
+Version:	4.4.7
 Summary:        Kodi's PCTV client addon  
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -273,6 +291,11 @@ Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devic
 
 %prep
 %setup -qn kodi-pvr-addons 
+
+pushd pvr.iptvsimple/
+%patch -p1
+git clone https://github.com/hydranix/RapidXml.git rapidxml
+popd
 
 #https://github.com/kodi-pvr/pvr.argustv/issues/57
 find -name "FindJsonCpp.cmake" -exec sed -i 's/JSONCPP jsoncpp/JSONCPP json/g' {} ';'
@@ -286,7 +309,8 @@ while IFS= read -r line; do
         # display $line or do something with $line
     mkdir -p $line/build/ 
 pushd %{_builddir}/kodi-pvr-addons/$line/build
-cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi -DBUILD_SHARED_LIBS=1 ..
+export RAPIDXML_INCLUDE_DIRS=$RAPIDXML_INCLUDE_DIRS:%{_builddir}/kodi-pvr-addons/pvr.iptvsimple/
+%cmake -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi -DBUILD_SHARED_LIBS=1 ..
 make 
 popd  
 done <"$file"

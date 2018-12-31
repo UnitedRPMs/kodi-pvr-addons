@@ -1,0 +1,33 @@
+diff -ruN orig/depends/common/rapidxml/CMakeLists.txt new/depends/common/rapidxml/CMakeLists.txt
+--- orig/depends/common/rapidxml/CMakeLists.txt	2018-12-30 09:55:05.000000000 -0600
++++ new/depends/common/rapidxml/CMakeLists.txt	2018-12-30 18:41:16.317439930 -0600
+@@ -2,4 +2,4 @@
+ 
+ project(rapidxml)
+ 
+-install(FILES rapidxml.hpp rapidxml_iterators.hpp rapidxml_print.hpp rapidxml_utils.hpp DESTINATION include/rapidxml)
++install(FILES rapidxml.h rapidxml_iterators.hpp rapidxml_print.hpp rapidxml_utils.hpp DESTINATION include/rapidxml)
+diff -ruN orig/FindRapidxml.cmake new/FindRapidxml.cmake
+--- orig/FindRapidxml.cmake	2018-12-30 09:55:05.000000000 -0600
++++ new/FindRapidxml.cmake	2018-12-30 19:56:27.919788138 -0600
+@@ -4,7 +4,7 @@
+ # RAPIDXML_FOUND - system has rapidxml
+ # RAPIDXML_INCLUDE_DIRS - the rapidxml include directory
+ 
+-find_path(RAPIDXML_INCLUDE_DIRS rapidxml/rapidxml.hpp)
++find_path(RAPIDXML_INCLUDE_DIRS rapidxml.h)
+ 
+ include(FindPackageHandleStandardArgs)
+ find_package_handle_standard_args(Rapidxml DEFAULT_MSG RAPIDXML_INCLUDE_DIRS)
+diff -ruN orig/src/PVRIptvData.cpp new/src/PVRIptvData.cpp
+--- orig/src/PVRIptvData.cpp	2018-12-30 09:55:05.000000000 -0600
++++ new/src/PVRIptvData.cpp	2018-12-30 19:56:47.874983390 -0600
+@@ -30,7 +30,7 @@
+ #include <string>
+ 
+ #include "zlib.h"
+-#include "rapidxml/rapidxml.hpp"
++#include "rapidxml.h"
+ #include "PVRIptvData.h"
+ #include "p8-platform/util/StringUtils.h"
+ #include "client.h"
