@@ -1,4 +1,4 @@
-%global gitdate 20181230
+%global gitdate 20190203
 %global debug_package %{nil}
 
 Name:           kodi-pvr-addons
@@ -108,7 +108,7 @@ TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-dvbviewer
-Version:	3.7.8
+Version:	3.7.11
 Summary:        Kodi's frontend for DVBViewer
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -122,7 +122,7 @@ recordings & EPG.
 #----------
 
 %package -n     kodi-pvr-hts
-Version:	4.4.6
+Version:	4.4.12
 Summary:        Kodi's frontend for Tvheadend
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -135,7 +135,7 @@ Tvheadend frontend; supporting streaming of Live TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-iptvsimple
-Version:	3.5.3
+Version:	3.5.7
 Summary:        Kodi PVR addon for IPTV support
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -149,7 +149,7 @@ multicast/unicast sources, listening to radio channels and EPG.
 #----------
 
 %package -n     kodi-pvr-mediaportal-tvserver
-Version:	3.5.14
+Version:	3.5.17
 Summary:        Kodi frontend for the MediaPortal TV Server (ffmpeg + tsreader version)
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -164,7 +164,7 @@ former ffmpeg and tsreader addons.
 #----------
 
 %package -n     kodi-pvr-mythtv
-Version:	4.18.1
+Version:	5.10.5
 Summary:        Kodi frontend for MythTV (using libcmyth)
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -178,7 +178,7 @@ listening to radio channels, EPG and timers.
 #----------
 
 %package -n     kodi-pvr-nextpvr
-Version:	3.3.8
+Version:	3.3.12
 Summary:        Kodi frontend for the NextPVR
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -222,7 +222,7 @@ to be installed on the VDR backend.
 #----------
 
 %package -n     kodi-pvr-vuplus
-Version:	3.15.4
+Version:	3.16.2
 Summary:        Kodi's frontend for VU+ / Enigma2 based settop boxes
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -235,7 +235,7 @@ VU+ frontend; supporting streaming of Live TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-wmc
-Version:	2.4.3
+Version:	2.4.4
 Summary:        Windows Media Center client for Kodi
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -279,7 +279,7 @@ A PVR Client that connects Kodi to Stalker Middleware.
 
 #----------
 %package -n     kodi-pvr-vbox
-Version:	4.4.7
+Version:	4.4.8
 Summary:        Kodi's PCTV client addon  
 Group:          Applications/Multimedia
 Requires:       kodi  >= 17.0
@@ -417,6 +417,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Sun Feb 03 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 18.0-8  
+- Updated to current stable Leia 
 
 * Sat Oct 13 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 18.0-7  
 - Automatic Mass Rebuild
