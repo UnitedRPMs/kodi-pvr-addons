@@ -34,6 +34,7 @@ BuildRequires:  cppmyth-devel
 BuildRequires:  cryptopp-devel
 BuildRequires:  rapidxml-devel 
 BuildRequires:	libxml2-devel
+BuildRequires:	json-devel
 #-------------------------------------
 Provides:       xbmc-pvr-addons-common = %{version}-%{release}
 Provides:       kodi-pvr-addons-common = %{version}-%{release}
