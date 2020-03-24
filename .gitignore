@@ -3,4 +3,5 @@ BUILDROOT/*
 RPMS/*
 SPECS/*
 SRPMS/*
-kodi-pvr-addons*.tar.xz
+*.tar.xz
+*.rpm

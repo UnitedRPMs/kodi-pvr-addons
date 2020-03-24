@@ -1,6 +1,8 @@
 %global gitdate 20190203
 %global debug_package %{nil}
 
+%define _legacy_common_support 1
+
 Name:           kodi-pvr-addons
 Version:        18.0
 Release:        8%{?dist}
