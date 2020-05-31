@@ -5,7 +5,7 @@
 
 Name:           kodi-pvr-addons
 Version:        18.0
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        Kodi PVR add-ons
 Epoch:		1
 Group:          Applications/Multimedia
@@ -421,8 +421,11 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 %changelog
 
+* Sat May 30 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 18.0-10  
+- Rebuilt for jsoncpp
+
 * Mon Apr 27 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 18.0-9  
-- Rebuilt for json
+- Rebuilt for jsoncpp
 
 * Sun Feb 03 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> 18.0-8  
 - Updated to current stable Leia 
