@@ -1,24 +1,24 @@
-%global gitdate 20190203
+%global gitdate 20210301
 %global debug_package %{nil}
 
 %define _legacy_common_support 1
 
 Name:           kodi-pvr-addons
-Version:        18.0
-Release:        10%{?dist}
+Version:        19.0
+Release:        7%{?dist}
 Summary:        Kodi PVR add-ons
 Epoch:		1
 Group:          Applications/Multimedia
 License:        GPLv3 and GPLv2+ and LGPLv2+ and MIT
 URL:            https://github.com/kodi-pvr
-Source0:	https://github.com/UnitedRPMs/%{name}/releases/download/18.0/%{name}-18-%{gitdate}.tar.xz
+Source0:	https://github.com/UnitedRPMs/%{name}/releases/download/19.0/%{name}-19-%{gitdate}.tar.xz
 Source1:        kodi-pvr-addons-snapshot.sh
 Source2:        kodi-pvr-addons.txt
 Patch:		rapidxml_fix.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  kodi-devel >= 18
+BuildRequires:  kodi-devel >= 19
 BuildRequires:  platform-devel 
 BuildRequires:  kodi-platform-devel >= 18
 BuildRequires:  jsoncpp-devel 
@@ -37,6 +37,7 @@ BuildRequires:  cryptopp-devel
 BuildRequires:  rapidxml-devel 
 BuildRequires:	libxml2-devel
 BuildRequires:	json-devel
+BuildRequires:	pugixml-devel
 #-------------------------------------
 Provides:       xbmc-pvr-addons-common = %{version}-%{release}
 Provides:       kodi-pvr-addons-common = %{version}-%{release}
@@ -44,7 +45,7 @@ Provides:       xbmc-pvr-addons = %{version}
 Obsoletes:      xbmc-pvr-addons-common < 14.0
 Obsoletes:      xbmc-pvr-addons <= %{version}
 #-------------------------------------
-Requires:       kodi >= 17.0
+Requires:       kodi >= 19.0
 Requires:       kodi-pvr-argustv 
 Requires:       kodi-pvr-demo 
 Requires:       kodi-pvr-dvblink 
@@ -70,10 +71,10 @@ This package install all Kodi PVR addons.
 #----------
 
 %package -n     kodi-pvr-argustv
-Version:	3.5.4
+Version:	7.1.0
 Summary:        Kodi frontend for the ARGUS TV PVR
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-argustv = %{version}-%{release}
 Obsoletes:      xbmc-pvr-argustv < 14.0
 
@@ -84,10 +85,10 @@ listening to radio channels, EPG and schedules.
 #----------
 
 %package -n     kodi-pvr-demo
-Version:	3.6.1
+Version:	7.1.1
 Summary:        Demo PVR Client for Kodi
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-demo = %{version}-%{release}
 Obsoletes:      xbmc-pvr-demo < 14.0
 
@@ -97,10 +98,10 @@ Obsoletes:      xbmc-pvr-demo < 14.0
 #----------
 
 %package -n     kodi-pvr-dvblink
-Version:	4.7.0
+Version:	9.1.0
 Summary:        Kodi PVR Plugin for DVBLink
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-dvblink = %{version}-%{release}
 Obsoletes:      xbmc-pvr-dvblink < 14.0
 
@@ -111,10 +112,10 @@ TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-dvbviewer
-Version:	3.7.11
+Version:	7.2.0
 Summary:        Kodi's frontend for DVBViewer
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-dvbviewer = %{version}-%{release}
 Obsoletes:      xbmc-pvr-dvbviewer < 14.0
 
@@ -125,10 +126,10 @@ recordings & EPG.
 #----------
 
 %package -n     kodi-pvr-hts
-Version:	4.4.12
+Version:	8.2.2
 Summary:        Kodi's frontend for Tvheadend
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-hts = %{version}-%{release}
 Obsoletes:      xbmc-pvr-hts < 14.0
 
@@ -138,10 +139,10 @@ Tvheadend frontend; supporting streaming of Live TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-iptvsimple
-Version:	3.5.7
+Version:	7.4.3
 Summary:        Kodi PVR addon for IPTV support
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-iptvsimple = %{version}-%{release}
 Obsoletes:      xbmc-pvr-iptvsimple < 14.0
 
@@ -152,10 +153,10 @@ multicast/unicast sources, listening to radio channels and EPG.
 #----------
 
 %package -n     kodi-pvr-mediaportal-tvserver
-Version:	3.5.17
+Version:	8.1.0
 Summary:        Kodi frontend for the MediaPortal TV Server (ffmpeg + tsreader version)
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-mediaportal-tvserver = %{version}-%{release}
 Obsoletes:      xbmc-pvr-mediaportal-tvserver < 14.0
 
@@ -167,10 +168,10 @@ former ffmpeg and tsreader addons.
 #----------
 
 %package -n     kodi-pvr-mythtv
-Version:	5.10.5
+Version:	7.3.0
 Summary:        Kodi frontend for MythTV (using libcmyth)
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-mythtv-cmyth = %{version}-%{release}
 Obsoletes:      xbmc-pvr-mythtv-cmyth < 14.0
 
@@ -181,10 +182,10 @@ listening to radio channels, EPG and timers.
 #----------
 
 %package -n     kodi-pvr-nextpvr
-Version:	3.3.12
+Version:	8.2.1
 Summary:        Kodi frontend for the NextPVR
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-nextpvr = %{version}-%{release}
 Obsoletes:      xbmc-pvr-nextpvr < 14.0
 
@@ -195,10 +196,10 @@ to radio channels and EPG.
 #----------
 
 %package -n     kodi-pvr-njoy
-Version:	3.4.2
+Version:	7.1.0
 Summary:        Njoy N7 PVR Client for Kodi
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-njoy = %{version}-%{release}
 Obsoletes:      xbmc-pvr-njoy < 14.0
 
@@ -208,10 +209,10 @@ Njoy N7 PVR Client for Kodi.
 #----------
 
 %package -n     kodi-pvr-vdr-vnsi
-Version:	3.6.2
+Version:	8.2.2
 Summary:        PVR client to connect VDR to Kodi over the VNSI interface
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-vdr-vnsi = %{version}-%{release}
 Obsoletes:      xbmc-pvr-vdr-vnsi < 14.0
 
@@ -225,10 +226,10 @@ to be installed on the VDR backend.
 #----------
 
 %package -n     kodi-pvr-vuplus
-Version:	3.16.2
+Version:	7.4.0
 Summary:        Kodi's frontend for VU+ / Enigma2 based settop boxes
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-vuplus = %{version}-%{release}
 Obsoletes:      xbmc-pvr-vuplus < 14.0
 
@@ -238,10 +239,10 @@ VU+ frontend; supporting streaming of Live TV & recordings, EPG, timers.
 #----------
 
 %package -n     kodi-pvr-wmc
-Version:	2.4.4
+Version:	6.1.1
 Summary:        Windows Media Center client for Kodi
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 Provides:       xbmc-pvr-wmc = %{version}-%{release}
 Obsoletes:      xbmc-pvr-wmc < 14.0
 
@@ -251,10 +252,10 @@ An Kodi client to interface to Windows Media Center's record and EPG service.
 #----------
 
 %package -n     kodi-pvr-filmon
-Version:	2.4.4
+Version:	6.1.0
 Summary:        Kodi's Filmon client addon 
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 
 %description -n kodi-pvr-filmon
 Kodi's Filmon client addon.
@@ -262,30 +263,30 @@ Kodi's Filmon client addon.
 #----------
 
 %package -n     kodi-pvr-pctv
-Version:	2.4.5
+Version:	6.1.0
 Summary:        Kodi's PCTV client addon  
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 
 %description -n kodi-pvr-pctv
 Kodi's PCTV client addon.
 
 #----------
 %package -n     kodi-pvr-stalker
-Version:	2.8.6
+Version:	7.1.0
 Summary:        Stalker Middleware PVR client addon for Kodi  
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 
 %description -n kodi-pvr-stalker
 A PVR Client that connects Kodi to Stalker Middleware.
 
 #----------
 %package -n     kodi-pvr-vbox
-Version:	4.4.8
+Version:	8.1.0
 Summary:        Kodi's PCTV client addon  
 Group:          Applications/Multimedia
-Requires:       kodi  >= 17.0
+Requires:       kodi  >= 19.0
 
 %description -n kodi-pvr-vbox
 Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devices.
@@ -296,7 +297,7 @@ Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devic
 %setup -qn kodi-pvr-addons 
 
 pushd pvr.iptvsimple/
-%patch -p1
+#patch -p1
 git clone https://github.com/hydranix/RapidXml.git rapidxml
 popd
 
@@ -310,12 +311,13 @@ ls -d */ | sed 's:/::g' | tee addons.txt
 file=addons.txt
 while IFS= read -r line; do
         # display $line or do something with $line
-    mkdir -p $line/build/ 
-pushd %{_builddir}/kodi-pvr-addons/$line/build
+    mkdir -p $line/build 
+    pushd  $line
 export RAPIDXML_INCLUDE_DIRS=$RAPIDXML_INCLUDE_DIRS:%{_builddir}/kodi-pvr-addons/pvr.iptvsimple/
-%cmake -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi -DBUILD_SHARED_LIBS=1 ..
-make 
-popd  
+export PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1
+%cmake -B build -DCMAKE_INSTALL_LIBDIR=%{_libdir}/kodi -DBUILD_SHARED_LIBS=1 -Wno-dev 
+make -C build  
+popd
 done <"$file"
 
 
@@ -323,7 +325,7 @@ done <"$file"
 file=addons.txt
 while IFS= read -r line; do
         # display $line or do something with $line
-pushd %{_builddir}/kodi-pvr-addons/$line/build
+pushd $line/build
 export PKG_CONFIG_PATH=%{_sourcedir}:%{_libdir}/pkgconfig
 make install DESTDIR=%{buildroot}
 popd  
@@ -421,6 +423,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 %changelog
 
+* Sun Feb 28 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 19.0-7  
+- Updated to Matrix release
+
 * Sat May 30 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 18.0-10  
 - Rebuilt for jsoncpp
 
@@ -464,22 +469,22 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 * Wed May 24 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.2-1
 - Updated to 17.2-1
 
-* Fri May 19 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-7
+* Fri May 19 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 19.0-7
 - Rebuilt
 
-* Fri Mar 17 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-5
+* Fri Mar 17 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 19.0-5
 - Massive rebuild
 
-* Mon Jan 16 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-4
+* Mon Jan 16 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 19.0-4
 - Kripton compatibility
 
-* Tue Jan 10 2017 Pavlo Rudyi <paulcarroty at riseup.net> - 17.0-3
+* Tue Jan 10 2017 Pavlo Rudyi <paulcarroty at riseup.net> - 19.0-3
 - Updated to the latest snapshot
 
-* Sun Oct 16 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-2
+* Sun Oct 16 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 19.0-2
 - Massive rebuild
 
-* Fri Aug 05 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 17.0-1
+* Fri Aug 05 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 19.0-1
 - Updated for compatibility with Krypton
 
 * Fri Jul 08 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 16.1-5

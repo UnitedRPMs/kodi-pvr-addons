@@ -2,7 +2,7 @@
 
 # New PVR add-ons repository for Kodi: https://github.com/kodi-pvr
 
-tag_name=master
+tag_name=Matrix
 
 set -x
 
@@ -33,19 +33,19 @@ git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.dvbviewer.git kodi-pvr-
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.mediaportal.tvserver.git kodi-pvr-addons/pvr.mediaportal
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.iptvsimple.git kodi-pvr-addons/pvr.iptvsimple
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.vuplus.git kodi-pvr-addons/pvr.vuplus
-git clone -b ${tag_name} --depth=1 https://github.com/Rechi/pvr.stalker.git kodi-pvr-addons/pvr.stalker
+git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.stalker kodi-pvr-addons/pvr.stalker
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.pctv.git kodi-pvr-addons/pvr.pctv
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.njoy.git kodi-pvr-addons/pvr.njoy
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.nextpvr.git kodi-pvr-addons/pvr.nextpvr
-git clone -b ${tag_name} --depth=1 https://github.com/FernetMenta/pvr.vdr.vnsi.git kodi-pvr-addons/pvr.vdr.vnsi
+git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.vdr.vnsi kodi-pvr-addons/pvr.vdr.vnsi
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.hts.git kodi-pvr-addons/pvr.hts
 git clone -b ${tag_name} https://github.com/kodi-pvr/pvr.wmc.git kodi-pvr-addons/pvr.wmc
-git clone -b ${tag_name} --depth=1 https://github.com/janbar/pvr.mythtv.git kodi-pvr-addons/pvr.mythtv
+git clone -b ${tag_name} https://github.com/janbar/pvr.mythtv.git kodi-pvr-addons/pvr.mythtv
 cd ${package}
 #git checkout ${branch}
 #tag=$(git rev-list HEAD -n 1 | cut -c 1-7)
 #version=`git describe --tags | cut -d '-' -f 1`
-version=18
+version=19
 cd ${tmp}
 tar Jcf "$pwd"/${name}-${version}-${date}.tar.xz ${package}
 
