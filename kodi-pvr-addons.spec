@@ -14,7 +14,6 @@ URL:            https://github.com/kodi-pvr
 Source0:	https://github.com/UnitedRPMs/%{name}/releases/download/19.0/%{name}-19-%{gitdate}.tar.xz
 Source1:        kodi-pvr-addons-snapshot.sh
 Source2:        kodi-pvr-addons.txt
-Patch:		rapidxml_fix.patch
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
@@ -297,7 +296,7 @@ Kodi PVR addon for interfacing with the VBox Communications XTi TV Gateway devic
 %setup -qn kodi-pvr-addons 
 
 pushd pvr.iptvsimple/
-#patch -p1
+
 git clone https://github.com/hydranix/RapidXml.git rapidxml
 popd
 
