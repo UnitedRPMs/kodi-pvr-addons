@@ -1,11 +1,11 @@
-%global gitdate 20210301
+%global gitdate 20211024
 %global debug_package %{nil}
 
 %define _legacy_common_support 1
 
 Name:           kodi-pvr-addons
 Version:        19.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Kodi PVR add-ons
 Epoch:		1
 Group:          Applications/Multimedia
@@ -17,7 +17,7 @@ Source2:        kodi-pvr-addons.txt
 
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
-BuildRequires:  kodi-devel >= 19
+BuildRequires:  kodi-devel >= 1:19.2
 BuildRequires:  platform-devel 
 BuildRequires:  kodi-platform-devel >= 18
 BuildRequires:  jsoncpp-devel 
@@ -421,6 +421,9 @@ install -m644 %{SOURCE2} %{buildroot}/%{_datadir}/licenses/
 
 
 %changelog
+
+* Sun Oct 24 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 19.0-8 
+- Updated to current commit
 
 * Sun Feb 28 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 19.0-7  
 - Updated to Matrix release
